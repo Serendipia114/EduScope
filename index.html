@@ -3,119 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#ffb3c6">
-    
-    <title>EduScope ✨</title>
+    <meta name="theme-color" content="#e0c3fc">
+    <title>EduScope ✨ - Colegio Bernardo Jaramillo</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #fff5f8;
-            --card-bg: #ffffff;
-            --primary-color: #ffb3c6;
-            --primary-dark: #ff8fab;
-            --secondary-color: #a0c4ff;
-            --success-color: #e2f0d9;
-            --warning-color: #fff2cc;
-            --danger-color: #fce4d6;
-            --text-color: #5c5c5c;
-            --border-radius: 20px;
+            --bg-color: #f8f4ff; --card-bg: #ffffff;
+            --primary-color: #e0c3fc; --primary-dark: #b185db;
+            --text-color: #4a4a4a; --border-radius: 20px;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; font-family: 'Nunito', sans-serif; background-color: var(--bg-color); color: var(--text-color); width: 100%; height: 100%; }
 
-        body, html {
-            margin: 0; padding: 0; font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color); color: var(--text-color);
-            width: 100%; height: 100%;
-        }
-
-        .screen {
-            display: none; width: 100%; min-height: 100vh;
-            padding-bottom: 90px; animation: fadeIn 0.3s ease-in-out;
-        }
+        .screen { display: none; width: 100%; min-height: 100vh; padding-bottom: 90px; animation: fadeIn 0.3s ease-in-out; }
         .screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(15px); } to { opacity: 1; transform: translateX(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(15px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .app-header {
-            background-color: var(--primary-color); color: white;
-            padding: 20px 15px 25px 15px; text-align: center;
-            border-bottom-left-radius: 25px; border-bottom-right-radius: 25px;
-            box-shadow: 0 4px 15px rgba(255, 179, 198, 0.4); position: relative;
-        }
-
-        .app-logo {
-            width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
-            border: 4px solid white; margin: 0 auto 10px auto; display: block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15); background-color: white;
-        }
-
-        .app-header h1 { margin: 0; font-size: 1.8em; font-weight: 900; letter-spacing: 1px; }
-        .app-header p { margin: 4px 0 0 0; font-size: 0.9em; font-style: italic; }
-
-        .back-nav {
-            position: absolute; top: 20px; left: 15px; font-weight: bold;
-            cursor: pointer; color: white; display: flex; align-items: center;
-            background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 10px;
-        }
-
+        /* Cabeceras */
+        .app-header { background-color: var(--primary-color); color: #4a235a; padding: 25px 15px 20px 15px; text-align: center; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; box-shadow: 0 4px 15px rgba(224, 195, 252, 0.4); position: relative; }
+        .header-logos { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px; }
+        .header-logos img { width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .app-header h1 { margin: 5px 0 0 0; font-size: 1.6em; font-weight: 900; }
+        .app-header p.location { margin: 2px 0 10px 0; font-size: 0.85em; font-weight: bold; color: #6c3483; }
+        .back-nav { position: absolute; top: 15px; left: 15px; font-weight: bold; cursor: pointer; color: #4a235a; display: flex; align-items: center; background: rgba(255,255,255,0.5); padding: 6px 12px; border-radius: 12px; z-index: 10; }
         .content { padding: 15px; }
 
-        /* Home Grid Navigation */
-        .home-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;
-        }
-
-        .nav-btn {
-            background: white; border-radius: 20px; padding: 20px 10px;
-            text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            cursor: pointer; transition: transform 0.2s; border: 2px solid transparent;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 130px;
-        }
+        /* Botones Inicio */
+        .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .nav-btn { background: white; border-radius: 20px; padding: 15px 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; border: 2px solid transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 140px; color: #444; }
         .nav-btn:active { transform: scale(0.95); }
         .nav-btn.pink { border-color: #ffc2d1; background: #fff0f5; }
         .nav-btn.blue { border-color: #bde0fe; background: #f2f7fa; }
         .nav-btn.yellow { border-color: #ffe6a7; background: #fffdf5; }
-        .nav-btn.green { border-color: #b5e48c; background: #f4fbf0; }
+        .nav-btn.purple { border-color: #cdb4db; background: #faf5ff; }
+        .nav-btn.cyan { border-color: #81ecec; background: #e0f7fa; }
+        .nav-icon { font-size: 2.5em; margin-bottom: 8px; }
+        .nav-title { font-weight: 900; font-size: 0.9em; line-height: 1.2; }
 
-        .nav-icon { font-size: 2.5em; margin-bottom: 10px; }
-        .nav-title { font-weight: 900; color: #444; font-size: 0.95em; line-height: 1.2; }
+        /* Tarjetas de Información */
+        .info-card { padding: 15px; background: white; border-left: 4px solid; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 0.9em; line-height: 1.5; }
+        .info-card h3 { margin-top: 0; color: inherit; }
 
-        /* Acordeones Dinámicos para el Nido del Saber */
-        details {
-            background: white; border-radius: 15px; margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05); overflow: hidden;
-            border-left: 5px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        details[open] { padding-bottom: 10px; }
-        summary {
-            padding: 18px 15px; font-weight: 900; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center;
-            color: #0077b6; font-size: 1.05em; outline: none;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary:after { content: '➕'; font-size: 1.1em; transition: transform 0.3s; }
-        details[open] summary:after { content: '➖'; transform: rotate(180deg); }
+        /* Formularios y Acordeones */
+        .form-group { background: var(--card-bg); padding: 15px; border-radius: var(--border-radius); margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #f0e6ff; }
+        .section-header { font-size: 1.1em; color: var(--primary-dark); font-weight: 900; margin-bottom: 5px; border-bottom: 2px dashed #e0c3fc; padding-bottom: 5px; }
+        .helper-text { font-size: 0.85em; color: #777; margin-bottom: 12px; font-style: italic; line-height: 1.4; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #4a235a; font-size: 0.95em; line-height: 1.3; margin-top: 15px; }
+        input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 12px; border: 2px solid #e0c3fc; border-radius: 12px; font-family: 'Nunito', sans-serif; font-size: 15px; outline: none; background-color: #fafafa; margin-bottom: 10px; color: #333; }
+        textarea { resize: vertical; min-height: 80px; }
+        .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; background: #fafafa; padding: 12px; border-radius: 10px; border: 1px solid #eee; }
+        .checkbox-label { display: flex; align-items: flex-start; gap: 8px; font-weight: normal; color: #444; font-size: 0.9em; cursor: pointer; line-height: 1.4; }
+        .checkbox-label input { margin-top: 3px; accent-color: var(--primary-dark); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer;}
         
-        .details-content { padding: 0 15px 5px 15px; font-size: 0.95em; color: #555; line-height: 1.5; }
-        .details-content ul { padding-left: 20px; margin-top: 5px; }
-        .details-content li { margin-bottom: 8px; }
-        .details-content strong { color: #333; }
+        details { background: white; border-radius: 10px; margin-bottom: 10px; border: 1px solid #e0c3fc; overflow: hidden; }
+        summary { padding: 12px 15px; font-weight: bold; cursor: pointer; list-style: none; background: #faf5ff; color: #6c3483; font-size: 0.95em; outline: none; }
+        summary::-webkit-details-marker { display: none; }
+        .details-content { padding: 15px; background: white; border-top: 1px solid #eee; font-size: 0.9em; line-height: 1.5; }
+        .details-content ul, .details-content ol { padding-left: 20px; margin-top: 5px; }
 
-        /* Form Styles */
-        .form-group { background: var(--card-bg); padding: 15px; border-radius: var(--border-radius); margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #ffe5ec; }
-        label { display: block; font-weight: bold; margin-bottom: 6px; color: var(--primary-dark); font-size: 0.95em; }
-        input[type="text"], select { width: 100%; padding: 12px; border: 2px solid #ffc2d1; border-radius: 12px; font-family: 'Nunito', sans-serif; font-size: 16px; outline: none; background-color: #fafafa; color: #333; }
-        .area-section { background: white; padding: 15px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #f1f1f1; }
-        .area-title { font-size: 1.1em; color: #0077b6; font-weight: 900; margin-bottom: 12px; text-align: center; border-bottom: 2px dashed #caf0f8; padding-bottom: 8px; }
-        .check-item { margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #f8f9fa; }
+        /* Checklist por Áreas */
+        .area-wrapper { margin-top: 20px; border: 2px solid #a9d18e; border-radius: 15px; overflow: hidden; }
+        .area-main-title { background: #e2f0d9; color: #2d6a4f; padding: 10px; font-weight: 900; text-align: center; text-transform: uppercase; border-bottom: 2px solid #a9d18e;}
+        .area-section { background: white; padding: 15px; border-bottom: 1px solid #e2e8f0; }
+        .area-title { font-size: 1em; color: #385723; font-weight: 900; margin-bottom: 10px; border-bottom: 1px dashed #a9d18e; padding-bottom: 5px; }
+        .check-item { margin-bottom: 15px; background: #fafafa; padding: 10px; border-radius: 8px; border: 1px solid #f0f0f0;}
         .check-item p { margin: 0 0 8px 0; font-weight: 700; color: #444; font-size: 0.9em; line-height: 1.3; }
         .options-group { display: flex; gap: 6px; }
         .option-label { flex: 1; text-align: center; padding: 10px 4px; border-radius: 10px; font-size: 0.75em; font-weight: bold; cursor: pointer; border: 2px solid #eee; color: #888; transition: all 0.2s; }
@@ -124,58 +77,56 @@
         input[value="2"]:checked + .option-label { background-color: #fff2cc; border-color: #ffd966; color: #7f6000; }
         input[value="1"]:checked + .option-label { background-color: #fce4d6; border-color: #f4b183; color: #c65911; }
 
-        /* Results Styles */
-        .report-card { background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
-        .concepto-final-box { background: #fff0f5; border: 2px solid var(--primary-color); border-radius: 15px; padding: 15px; margin-bottom: 20px; }
-        .concepto-title { font-weight: 900; color: var(--primary-dark); margin-bottom: 10px; font-size: 1.1em; text-align: center; }
-        .concepto-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.95em; color: #777; }
-        .concepto-item.selected { font-weight: bold; color: #0077b6; }
-        .concepto-item input[type="checkbox"] { width: 18px; height: 18px; pointer-events: none; accent-color: #0077b6; margin-top: 2px; }
-        .table-responsive { width: 100%; overflow-x: auto; background: white; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 10px; margin-bottom: 20px; }
-        table { width: 100%; min-width: 800px; border-collapse: collapse; }
-        th { background-color: var(--secondary-color); color: white; padding: 12px; font-size: 0.85em; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.85em; vertical-align: top; line-height: 1.4; }
-        .item-list { margin: 8px 0 0 0; padding-left: 15px; color: #555; font-size: 0.95em; }
-        .item-list li { margin-bottom: 4px; }
-        .li-dificultad::marker { color: #c65911; }
-        .li-proceso::marker { color: #7f6000; }
-        .badge { padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 0.85em; display: inline-block; margin-top: 4px; }
-        .badge-proceso { background-color: #fff2cc; color: #7f6000; border: 1px solid #ffd966; }
-        .badge-dificultad { background-color: #fce4d6; color: #c65911; border: 1px solid #f4b183; }
-
-        .dua-section { background: white; border-left: 5px solid #bde0fe; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .dua-title { color: #0077b6; font-size: 1.2em; font-weight: 900; margin-bottom: 15px; }
-        .dua-list { padding-left: 20px; color: #555; font-size: 0.9em; line-height: 1.5; }
-
-        .app-credits { text-align: center; font-size: 0.8em; font-style: italic; color: rgba(128, 128, 128, 0.6); margin-top: 25px; margin-bottom: 20px; }
         .floating-action { position: fixed; bottom: 15px; left: 15px; right: 15px; z-index: 1000; }
-        .btn-main { background-color: var(--primary-dark); color: white; border: none; padding: 16px; width: 100%; font-size: 1.1em; font-weight: 900; border-radius: 25px; box-shadow: 0 6px 15px rgba(255, 143, 171, 0.4); cursor:pointer; }
-        .btn-secondary { background-color: var(--secondary-color); box-shadow: 0 6px 15px rgba(160, 196, 255, 0.4); margin-top: 8px; }
-        
+        .btn-main { background-color: var(--primary-dark); color: white; border: none; padding: 16px; width: 100%; font-size: 1.1em; font-weight: 900; border-radius: 25px; box-shadow: 0 6px 15px rgba(177, 133, 219, 0.4); cursor:pointer; }
         .hidden { display: none !important; }
-        
+
+        /* Estilos Documento PDF */
+        .doc-container { background: white; padding: 25px; border-radius: 15px; color: #333; font-size: 0.95em; line-height: 1.5; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .doc-header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
+        .doc-header h2 { margin: 0 0 5px 0; font-size: 1.3em; text-transform: uppercase; }
+        .doc-header p { margin: 0; font-size: 0.9em; color: #555; }
+        .doc-section-title { font-weight: bold; background: #f0f0f0; padding: 8px; border-left: 4px solid #333; margin: 20px 0 10px 0; font-size: 1em; text-transform: uppercase; }
+        .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        .doc-table th, .doc-table td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; vertical-align: top; }
+        .doc-table th { background-color: #fafafa; font-weight: bold; width: 35%; }
+        .doc-text-block { margin-bottom: 15px; text-align: justify; }
+        .results-table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin-bottom: 15px;}
+        .results-table th { background-color: #e0c3fc; color: #4a235a; padding: 10px; text-align: left; border: 1px solid #b185db; }
+        .results-table td { padding: 10px; border: 1px solid #ccc; vertical-align: top; }
+        .item-list { margin: 5px 0 0 0; padding-left: 15px; }
+        .item-list li { margin-bottom: 4px; }
+        .li-dificultad::marker { color: #c65911; font-weight:bold; }
+        .li-proceso::marker { color: #7f6000; font-weight:bold; }
+        .signatures { display: flex; justify-content: space-between; margin-top: 60px; text-align: center; }
+        .sig-line { border-top: 1px solid #333; width: 45%; padding-top: 5px; font-weight: bold; font-size: 0.9em; }
+
         @media print {
-            .floating-action, .back-nav { display: none !important; }
-            body { background: white; }
-            .screen { padding-bottom: 0; display:block !important; }
-            .table-responsive { overflow: visible; box-shadow: none; }
-            table { min-width: 100%; }
+            body * { visibility: hidden; }
+            #screen-unified-report, #screen-unified-report * { visibility: visible; }
+            #screen-unified-report { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; }
+            .doc-container { box-shadow: none; border: none; padding: 0; margin: 0; width: 100%; }
+            .app-header, .floating-action, .back-nav { display: none !important; }
+            html, body { height: auto; background: white; margin: 0; padding: 0; }
+            .results-table th { background-color: #f0f0f0 !important; color: #000 !important; border: 1px solid #000 !important; }
+            .results-table td { border: 1px solid #000 !important; }
         }
     </style>
 </head>
 <body>
 
-<!-- PANTALLA INICIO (HOME) -->
+<!-- INICIO -->
 <div id="screen-home" class="screen active">
     <div class="app-header">
-        <img src="mascota.png" alt="Logo EduScope" class="app-logo" onerror="this.src='https://via.placeholder.com/100/ffb3c6/ffffff?text=EduScope'">
+        <div class="header-logos">
+            <img src="Logo.jpg" alt="Colegio Bernardo Jaramillo" onerror="this.style.display='none'">
+            <img src="mascota.png" alt="Mascota EduScope" onerror="this.style.display='none'">
+        </div>
         <h1>EduScope</h1>
-        <p>"Detectando necesidades, potenciando capacidades"</p>
+        <p class="location">Colegio Bernardo Jaramillo IED<br>Bogotá, Localidad de Tunjuelito</p>
+        <p class="motto">"Detectando necesidades, potenciando capacidades"</p>
     </div>
-
     <div class="content">
-        <h2 style="color:#0077b6; font-size:1.1em; text-align:center; margin-bottom:5px;">¿Qué deseas explorar hoy?</h2>
-        
         <div class="home-grid">
             <div class="nav-btn pink" onclick="navigate('screen-nido')">
                 <div class="nav-icon">🥚</div>
@@ -187,42 +138,55 @@
             </div>
             <div class="nav-btn yellow" onclick="navigate('screen-barreras')">
                 <div class="nav-icon">🚧</div>
-                <div class="nav-title">Identificando Barreras</div>
+                <div class="nav-title">Guía de Barreras</div>
             </div>
-            <div class="nav-btn green" onclick="navigate('screen-form')">
-                <div class="nav-icon">🧠</div>
-                <div class="nav-title">Ajustes Inteligentes</div>
+            <div class="nav-btn purple" onclick="navigate('screen-unified-form')">
+                <div class="nav-icon">📝</div>
+                <div class="nav-title">Generación de Ajustes</div>
             </div>
+            
+            <!-- Botón Repositorio -->
+            <a href="https://outlook.cloud.microsoft/host/377c982d-9686-450e-9a7c-22aeaf1bc162/7211f19f-262a-42eb-a02e-289956491741" target="_blank" style="text-decoration: none; grid-column: span 2;">
+                <div class="nav-btn cyan" style="height: 90px; flex-direction: row; gap: 15px;">
+                    <div class="nav-icon" style="margin:0;">📁</div>
+                    <div class="nav-title" style="color: #00838f;">Repositorio (Material de apoyo)</div>
+                </div>
+            </a>
         </div>
         
-        <div class="app-credits">Created by Maria Torres - Orientadora</div>
+        <!-- Firma Inferior -->
+        <div style="text-align: center; color: gray; font-size: 13px; font-style: italic; margin-top: 30px; font-weight: bold;">
+            Create by María Torres - Orientadora
+        </div>
     </div>
 </div>
 
 <!-- MENÚ: NIDO DEL SABER -->
 <div id="screen-nido" class="screen">
-    <div class="app-header" style="border-radius: 0 0 20px 20px; padding: 15px;">
+    <div class="app-header" style="border-radius: 0 0 20px 20px; padding: 15px; background-color: #ffc2d1;">
         <div class="back-nav" onclick="navigate('screen-home')">⬅️ Volver</div>
         <h1 style="margin-top: 30px;">🥚 Nido del Saber</h1>
+        <p style="font-weight: bold; color: #4a235a; font-size: 0.9em; margin-top: 5px;">Seleccione una categoría formativa</p>
     </div>
     <div class="content">
-        <div class="nav-btn pink" style="min-height: 80px; margin-bottom: 10px; flex-direction:row; justify-content: flex-start; padding: 15px;" onclick="navigate('screen-info-inclusion')">
-            <div class="nav-icon" style="margin:0 15px 0 0;">🌍</div>
-            <div class="nav-title" style="text-align: left;">Educación Inclusiva</div>
+        <div class="home-grid">
+            <div class="nav-btn" style="border-color: #ff8fab; background: #fff0f3;" onclick="navigate('screen-info-inclusion')">
+                <div class="nav-icon">🌍</div>
+                <div class="nav-title">Educación Inclusiva</div>
+            </div>
+            <div class="nav-btn" style="border-color: #a0c4ff; background: #f1f7ff;" onclick="navigate('screen-info-dificultades')">
+                <div class="nav-icon">📖</div>
+                <div class="nav-title">Dificultades de Aprendizaje</div>
+            </div>
+            <div class="nav-btn" style="border-color: #ffd166; background: #fffbf0;" onclick="navigate('screen-info-senso')">
+                <div class="nav-icon">🖐️</div>
+                <div class="nav-title">Sensopercepción</div>
+            </div>
+            <div class="nav-btn" style="border-color: #9381ff; background: #f4f0ff;" onclick="navigate('screen-info-hse')">
+                <div class="nav-icon">💖</div>
+                <div class="nav-title">HSE y Regulación</div>
+            </div>
         </div>
-        <div class="nav-btn pink" style="min-height: 80px; margin-bottom: 10px; flex-direction:row; justify-content: flex-start; padding: 15px;" onclick="navigate('screen-info-dificultades')">
-            <div class="nav-icon" style="margin:0 15px 0 0;">📖</div>
-            <div class="nav-title" style="text-align: left;">Dificultades de Aprendizaje</div>
-        </div>
-        <div class="nav-btn pink" style="min-height: 80px; margin-bottom: 10px; flex-direction:row; justify-content: flex-start; padding: 15px;" onclick="navigate('screen-info-senso')">
-            <div class="nav-icon" style="margin:0 15px 0 0;">🖐️</div>
-            <div class="nav-title" style="text-align: left;">Sensopercepción</div>
-        </div>
-        <div class="nav-btn pink" style="min-height: 80px; margin-bottom: 10px; flex-direction:row; justify-content: flex-start; padding: 15px;" onclick="navigate('screen-info-hse')">
-            <div class="nav-icon" style="margin:0 15px 0 0;">💖</div>
-            <div class="nav-title" style="text-align: left;">Habilidades Socioemocionales</div>
-        </div>
-        <div class="app-credits">Created by Maria Torres - Orientadora</div>
     </div>
 </div>
 
@@ -233,14 +197,14 @@
         <h1 style="margin-top: 30px;">🌍 Educación Inclusiva</h1>
     </div>
     <div class="content">
-        <details style="border-color: #ff8fab;">
+        <details style="border-color: #ff8fab;" open>
             <summary>De la Integración a la Inclusión</summary>
             <div class="details-content">
-                <p>La evolución histórica nos muestra un cambio de paradigma[cite: 19]:</p>
+                <p>La evolución histórica nos muestra un cambio de paradigma:</p>
                 <ul>
                     <li><strong>Exclusión/Segregación:</strong> Separación total del sistema educativo regular.</li>
-                    <li><strong>Integración:</strong> El alumno considerado "especial" accede a la escuela tradicional, pero debe adaptarse a un sistema inalterado[cite: 19].</li>
-                    <li><strong>Inclusión:</strong> Reconoce y valora la diversidad. Es el sistema de enseñanza (la escuela) el que debe adaptarse al alumnado para dar respuesta a sus necesidades[cite: 19].</li>
+                    <li><strong>Integración:</strong> El alumno considerado "especial" accede a la escuela tradicional, pero debe adaptarse a un sistema inalterado.</li>
+                    <li><strong>Inclusión:</strong> Reconoce y valora la diversidad. Es el sistema de enseñanza (la escuela) el que debe adaptarse al alumnado para dar respuesta a sus necesidades.</li>
                 </ul>
             </div>
         </details>
@@ -249,9 +213,9 @@
             <summary>Modelos de Discapacidad</summary>
             <div class="details-content">
                 <ul>
-                    <li><strong>Modelo Médico:</strong> Entiende la discapacidad como una deficiencia o enfermedad que reside en el individuo y que debe ser tratada o corregida. Busca rehabilitar a la persona para adaptarla a la sociedad[cite: 19].</li>
-                    <li><strong>Modelo Social:</strong> Plantea que las causas que originan la discapacidad son en gran medida sociales (barreras del entorno). Diferencia entre deficiencia (física) y discapacidad (restricción social)[cite: 19].</li>
-                    <li><strong>Modelo de Derechos:</strong> Reconoce a las personas con discapacidad como titulares de derechos. La discapacidad es resultado de la interacción entre la persona y un entorno que no ofrece ajustes razonables[cite: 19].</li>
+                    <li><strong>Modelo Médico:</strong> Entiende la discapacidad como una deficiencia o enfermedad que reside en el individuo y que debe ser tratada o corregida. Busca rehabilitar a la persona para adaptarla a la sociedad.</li>
+                    <li><strong>Modelo Social:</strong> Plantea que las causas que originan la discapacidad son en gran medida sociales (barreras del entorno). Diferencia entre deficiencia (física) y discapacidad (restricción social).</li>
+                    <li><strong>Modelo de Derechos:</strong> Reconoce a las personas con discapacidad como titulares de derechos. La discapacidad es resultado de la interacción entre la persona y un entorno que no ofrece ajustes razonables.</li>
                 </ul>
             </div>
         </details>
@@ -259,7 +223,7 @@
         <details style="border-color: #ff8fab;">
             <summary>El PIAR (Plan Individual de Ajustes)</summary>
             <div class="details-content">
-                <p>Es una herramienta para garantizar los procesos de enseñanza. Requiere 8 pasos[cite: 19]:</p>
+                <p>Es una herramienta para garantizar los procesos de enseñanza. Requiere 8 pasos:</p>
                 <ol>
                     <li>Conformar el equipo y definir el caso.</li>
                     <li>Recoger información clave (contexto, familia).</li>
@@ -282,40 +246,40 @@
         <h1 style="margin-top: 30px;">📖 Dificultades de Aprendizaje</h1>
     </div>
     <div class="content">
-        <details style="border-color: #a0c4ff;">
+        <details style="border-color: #a0c4ff;" open>
             <summary>Lectura (Dislexia)</summary>
             <div class="details-content">
-                <p>Trastorno del neurodesarrollo que afecta el reconocimiento preciso y fluido de las palabras[cite: 18].</p>
+                <p>Trastorno del neurodesarrollo que afecta el reconocimiento preciso y fluido de las palabra.</p>
                 <ul>
-                    <li><strong>Ruta Fonológica (Indirecta):</strong> Decodificación letra por sonido. Cuando falla, hay **Dislexia Fonológica** (dificultad para leer pseudopalabras y segmentar)[cite: 18].</li>
-                    <li><strong>Ruta Léxica (Directa):</strong> Diccionario visual de palabras. Cuando falla, hay **Dislexia Superficial o Visoespacial** (lectura lenta, silabeo, confusión de homófonos)[cite: 18].</li>
+                    <li><strong>Ruta Fonológica (Indirecta):</strong> Decodificación letra por sonido. Cuando falla, hay <strong>Dislexia Fonológica</strong> (dificultad para leer pseudopalabras y segmentar).</li>
+                    <li><strong>Ruta Léxica (Directa):</strong> Diccionario visual de palabras. Cuando falla, hay <strong>Dislexia Superficial o Visoespacial</strong> (lectura lenta, silabeo, confusión de homófonos).</li>
                 </ul>
-                <p><strong>Errores comunes:</strong> Fonológicos (sustituye sonidos), Precisión (invierte letras), Fluidez (silabea, pausas), Comprensión (lee pero no entiende)[cite: 18].</p>
+                <p><strong>Errores comunes:</strong> Fonológicos (sustituye sonidos), Precisión (invierte letras), Fluidez (silabea, pausas), Comprensión (lee pero no entiende).</p>
             </div>
         </details>
 
         <details style="border-color: #a0c4ff;">
             <summary>Escritura (Disgrafía / Disortografía)</summary>
             <div class="details-content">
-                <p>Proceso complejo que requiere lenguaje, conciencia fonológica y desarrollo psicomotor[cite: 18].</p>
+                <p>Proceso complejo que requiere lenguaje, conciencia fonológica y desarrollo psicomotor.</p>
                 <ul>
-                    <li><strong>Disgrafía Grafomotora:</strong> Problemas en precurrentes (pinza digital, coordinación motriz, esquema corporal)[cite: 18].</li>
-                    <li><strong>Disgrafía Evolutiva:</strong> Dificultades fonológicas (escribir el sonido) o superficiales (ortografía por vía léxica)[cite: 18].</li>
+                    <li><strong>Disgrafía Grafomotora:</strong> Problemas en precurrentes (pinza digital, coordinación motriz, esquema corporal) .</li>
+                    <li><strong>Disgrafía Evolutiva:</strong> Dificultades fonológicas (escribir el sonido) o superficiales (ortografía por vía léxica).</li>
                 </ul>
-                <p><strong>Tipos de errores:</strong> Fonológicos (kasa por casa), Morfosintácticos (frases desordenadas), Planificación (ideas sin conexión ejecutiva), Motores (letra ilegible)[cite: 18].</p>
+                <p><strong>Tipos de errores:</strong> Fonológicos (kasa por casa), Morfosintácticos (frases desordenadas), Planificación (ideas sin conexión ejecutiva), Motores (letra ilegible).</p>
             </div>
         </details>
 
         <details style="border-color: #a0c4ff;">
             <summary>Matemáticas (Discalculia)</summary>
             <div class="details-content">
-                <p>Trastorno estructural para manejar símbolos y cálculos numéricos[cite: 17].</p>
+                <p>Trastorno estructural para manejar símbolos y cálculos numéricos.</p>
                 <ul>
-                    <li><strong>Verbal:</strong> Ligada a alteraciones del lenguaje. Hemisferio izquierdo[cite: 17].</li>
-                    <li><strong>Visoespacial:</strong> Deficiente orientación espacial al identificar números. Hemisferio derecho[cite: 17].</li>
-                    <li><strong>Anaritmética:</strong> Dificultades en memoria de trabajo y operaciones[cite: 17].</li>
+                    <li><strong>Verbal:</strong> Ligada a alteraciones del lenguaje. Hemisferio izquierdo.</li>
+                    <li><strong>Visoespacial:</strong> Deficiente orientación espacial al identificar números. Hemisferio derecho.</li>
+                    <li><strong>Anaritmética:</strong> Dificultades en memoria de trabajo y operaciones.</li>
                 </ul>
-                <p><strong>Errores típicos:</strong> Valor posicional (escribe 302 como 32), Procedimentales (omite pasos), Memoria de trabajo (olvida números), Comprensión de problemas[cite: 17].</p>
+                <p><strong>Errores típicos:</strong> Valor posicional (escribe 302 como 32), Procedimentales (omite pasos), Memoria de trabajo (olvida números), Comprensión de problemas.</p>
             </div>
         </details>
     </div>
@@ -328,15 +292,15 @@
         <h1 style="margin-top: 30px;">🖐️ Sensopercepción</h1>
     </div>
     <div class="content">
-        <details style="border-color: #ffd166;">
+        <details style="border-color: #ffd166;" open>
             <summary>¿Qué es y cómo funciona?</summary>
             <div class="details-content">
-                <p>El cerebro no aprende por canales aislados ("estilos de aprendizaje" es un neuromito). El aprendizaje es multisensorial e integrado[cite: 16].</p>
+                <p>El cerebro no aprende por canales aislados ("estilos de aprendizaje" es un neuromito). El aprendizaje es multisensorial e integrado.</p>
                 <ul>
                     <li><strong>Sensación:</strong> Recepción de estímulos (lo que veo, escucho, siento).</li>
                     <li><strong>Percepción:</strong> Interpretación cerebral (lo que significa para mí).</li>
                 </ul>
-                <p>La integración sensorial es organizar esa información para producir respuestas adaptativas[cite: 16].</p>
+                <p>La integración sensorial es organizar esa información para producir respuestas adaptativas.</p>
             </div>
         </details>
 
@@ -345,9 +309,9 @@
             <div class="details-content">
                 <ul>
                     <li><strong>Visual, Auditivo, Táctil, Olfativo y Gustativo.</strong></li>
-                    <li><strong>Vestibular:</strong> Oído interno. Regula equilibrio, postura y alerta. El niño que busca movimiento constante o teme a las alturas[cite: 16].</li>
-                    <li><strong>Propioceptivo:</strong> Músculos y articulaciones. Informa sobre la posición del cuerpo y regula la fuerza (el niño que rompe la punta del lápiz o busca golpes)[cite: 16].</li>
-                    <li><strong>Interoceptivo:</strong> Receptores viscerales (Insula). Procesa estados internos (hambre, ganas de ir al baño, emociones). Dificultad para regularse sin razón aparente[cite: 16].</li>
+                    <li><strong>Vestibular:</strong> Oído interno. Regula equilibrio, postura y alerta. El niño que busca movimiento constante o teme a las alturas.</li>
+                    <li><strong>Propioceptivo:</strong> Músculos y articulaciones. Informa sobre la posición del cuerpo y regula la fuerza (el niño que rompe la punta del lápiz o busca golpes).</li>
+                    <li><strong>Interoceptivo:</strong> Receptores viscerales (Insula). Procesa estados internos (hambre, ganas de ir al baño, emociones). Dificultad para regularse sin razón aparente.</li>
                 </ul>
             </div>
         </details>
@@ -355,7 +319,7 @@
         <details style="border-color: #ffd166;">
             <summary>Perfiles Sensoriales (Winnie Dunn)</summary>
             <div class="details-content">
-                <p>Depende de la interacción entre el Umbral Neurológico y la Respuesta Conductual[cite: 16]:</p>
+                <p>Depende de la interacción entre el Umbral Neurológico y la Respuesta Conductual:</p>
                 <ul>
                     <li><strong>Registro Pobre (Umbral alto + Pasivo):</strong> No detecta estímulos, parece "ido" o desconectado.</li>
                     <li><strong>Búsqueda Sensorial (Umbral alto + Activo):</strong> Necesita mucho estímulo, no para de moverse, hace ruido.</li>
@@ -369,15 +333,15 @@
 
 <!-- NIDO: HABILIDADES SOCIOEMOCIONALES -->
 <div id="screen-info-hse" class="screen">
-    <div class="app-header" style="border-radius: 0 0 20px 20px; padding: 15px; background-color: #9381ff;">
-        <div class="back-nav" onclick="navigate('screen-nido')">⬅️ Volver</div>
+    <div class="app-header" style="border-radius: 0 0 20px 20px; padding: 15px; background-color: #9381ff; color: white;">
+        <div class="back-nav" style="color: white; background: rgba(0,0,0,0.2);" onclick="navigate('screen-nido')">⬅️ Volver</div>
         <h1 style="margin-top: 30px;">💖 HSE y Regulación</h1>
     </div>
     <div class="content">
-        <details style="border-color: #9381ff;">
+        <details style="border-color: #9381ff;" open>
             <summary>El Modelo CASEL y las 5 HSE</summary>
             <div class="details-content">
-                <p>El aprendizaje socioemocional (SEL) requiere enseñanza explícita[cite: 21]:</p>
+                <p>El aprendizaje socioemocional (SEL) requiere enseñanza explícita:</p>
                 <ol>
                     <li><strong>Conciencia de sí mismo:</strong> Reconocer fortalezas y emociones propias.</li>
                     <li><strong>Conciencia social:</strong> Empatía, respeto por la diversidad.</li>
@@ -391,24 +355,24 @@
         <details style="border-color: #9381ff;">
             <summary>Neurobiología: El Cerebro Triuno</summary>
             <div class="details-content">
-                <p>Modelo de Daniel Siegel ("El cerebro en la palma de la mano")[cite: 22, 23]:</p>
+                <p>Modelo de Daniel Siegel ("El cerebro en la palma de la mano"):</p>
                 <ul>
                     <li><strong>Tallo Cerebral (Tronco):</strong> Sistema de supervivencia (lucha, huida, congelación).</li>
                     <li><strong>Sistema Límbico (Amígdala - Pulgar):</strong> Centro emocional y de memoria.</li>
                     <li><strong>Corteza Prefrontal (Dedos):</strong> Razonamiento, lenguaje y funciones ejecutivas.</li>
                 </ul>
-                <p><strong>Secuestro Amigdalar:</strong> La amígdala domina a la corteza. El niño reacciona de forma impulsiva o agresiva. El pensamiento racional "se desconecta". ¡No se puede razonar en este estado![cite: 23].</p>
+                <p><strong>Secuestro Amigdalar:</strong> La amígdala domina a la corteza. El niño reacciona de forma impulsiva o agresiva. El pensamiento racional "se desconecta". ¡No se puede razonar en este estado!.</p>
             </div>
         </details>
 
         <details style="border-color: #9381ff;">
             <summary>Estrés Tóxico y Trauma</summary>
             <div class="details-content">
-                <p>Cuando el estrés es prolongado sin un adulto protector, se vuelve tóxico[cite: 23].</p>
+                <p>Cuando el estrés es prolongado sin un adulto protector, se vuelve tóxico.</p>
                 <ul>
-                    <li><strong>Las 3 "E" del trauma:</strong> Evento, Experiencia, Efecto[cite: 23].</li>
-                    <li>La pregunta no es "¿Qué te pasa?", sino <strong>"¿Qué te pasó?"</strong>[cite: 23].</li>
-                    <li><strong>Regulación copartida:</strong> Un adulto tranquilo que ayuda a calmar al niño puede reconfigurar su sistema de estrés[cite: 23].</li>
+                    <li><strong>Las 3 "E" del trauma:</strong> Evento, Experiencia, Efecto.</li>
+                    <li>La pregunta no es "¿Qué te pasa?", sino <strong>"¿Qué te pasó?"</strong>.</li>
+                    <li><strong>Regulación copartida:</strong> Un adulto tranquilo que ayuda a calmar al niño puede reconfigurar su sistema de estrés.</li>
                 </ul>
             </div>
         </details>
@@ -417,10 +381,10 @@
             <summary>Herramientas de Regulación</summary>
             <div class="details-content">
                 <ul>
-                    <li><strong>Conectar para redirigir:</strong> Validar la emoción primero ("Veo que estás muy enojado"), razonar después. El cerebro no aprende si no se siente seguro (Bottom Up)[cite: 23].</li>
-                    <li><strong>Poner nombre para dominar:</strong> Etiquetar la emoción calma la descarga eléctrica de la amígdala[cite: 23].</li>
-                    <li><strong>Respiración Cuadrática / Mindfulness:</strong> Activa el sistema nervioso parasimpático y el nervio vago (calma)[cite: 22].</li>
-                    <li><strong>Pausas Activas (Movimiento):</strong> Si hay tensión, el movimiento físico resetea el sistema nervioso[cite: 23].</li>
+                    <li><strong>Conectar para redirigir:</strong> Validar la emoción primero ("Veo que estás muy enojado"), razonar después. El cerebro no aprende si no se siente seguro (Bottom Up).</li>
+                    <li><strong>Poner nombre para dominar:</strong> Etiquetar la emoción calma la descarga eléctrica de la amígdala.</li>
+                    <li><strong>Respiración Cuadrática / Mindfulness:</strong> Activa el sistema nervioso parasimpático y el nervio vago (calma).</li>
+                    <li><strong>Pausas Activas (Movimiento):</strong> Si hay tensión, el movimiento físico resetea el sistema nervioso.</li>
                 </ul>
             </div>
         </details>
@@ -486,7 +450,7 @@
     <div class="content">
         <div class="info-card" style="border-color: #ffe6a7;">
             <h3>¿Qué son las BAP?</h3>
-            <p>Las Barreras para el Aprendizaje y la Participación (BAP) surgen de la interacción entre el estudiante y su entorno. No son deficiencias del niño, sino obstáculos que pone el contexto[cite: 19].</p>
+            <p>Las Barreras para el Aprendizaje y la Participación (BAP) surgen de la interacción entre el estudiante y su entorno. No son deficiencias del niño, sino obstáculos que pone el contexto.</p>
         </div>
         
         <details style="border-color: #ffe6a7;" open>
@@ -494,7 +458,7 @@
             <div class="details-content">
                 <ul>
                     <li>Leyes o normativas contradictorias en la institución.</li>
-                    <li>Ausencia de políticas claras de inclusión en el Proyecto Educativo Institucional (PEI)[cite: 19].</li>
+                    <li>Ausencia de políticas claras de inclusión en el Proyecto Educativo Institucional (PEI).</li>
                     <li>Falta de asignación de recursos o personal de apoyo (orientación, educadores especiales).</li>
                     <li>Sistemas de evaluación rígidos e inflexibles mandatados por la dirección.</li>
                 </ul>
@@ -505,7 +469,7 @@
             <summary>Barreras Culturales (Actitudinales)</summary>
             <div class="details-content">
                 <ul>
-                    <li>Prejuicios, estigmas y estereotipos sobre la discapacidad ("él no puede aprender eso")[cite: 19].</li>
+                    <li>Prejuicios, estigmas y estereotipos sobre la discapacidad ("él no puede aprender eso").</li>
                     <li>Bajas expectativas de docentes y familias hacia el estudiante.</li>
                     <li>Resistencia al cambio por parte de la comunidad educativa ("siempre se ha enseñado así").</li>
                     <li>Aislamiento social o bullying por parte de los pares.</li>
@@ -517,7 +481,7 @@
             <summary>Barreras Didácticas (Prácticas)</summary>
             <div class="details-content">
                 <ul>
-                    <li>Métodos de enseñanza homogeneizadores (talla única para todos)[cite: 19].</li>
+                    <li>Métodos de enseñanza homogeneizadores (talla única para todos).</li>
                     <li>Ausencia de implementación del Diseño Universal para el Aprendizaje (DUA).</li>
                     <li>Evaluaciones estandarizadas sin ajustes razonables.</li>
                     <li>Falta de apoyos visuales, materiales manipulativos o tecnología en el aula.</li>
@@ -527,482 +491,583 @@
     </div>
 </div>
 
-<!-- PANTALLA: EVALUACIÓN (AJUSTES INTELIGENTES) -->
-<div id="screen-form" class="screen">
-    <div class="app-header" style="background-color: #b5e48c; color: #2d6a4f;">
-        <div class="back-nav" style="color: #2d6a4f;" onclick="navigate('screen-home')">⬅️ Inicio</div>
-        <img src="mascota.png" alt="Logo EduScope" class="app-logo" style="width: 70px; height: 70px; margin-top:20px;" onerror="this.style.display='none'">
-        <h1 style="color: #2d6a4f;">🧠 Ajustes Inteligentes</h1>
-        <p style="color: #2d6a4f;">Registro y Apoyos PIAR</p>
+<!-- FORMULARIO GENERACION DE AJUSTES -->
+<div id="screen-unified-form" class="screen">
+    <div class="app-header">
+        <div class="back-nav" onclick="navigate('screen-home')">⬅️ Volver</div>
+        <h1 style="margin-top: 30px; font-size: 1.4em;">Generación de Ajustes</h1>
     </div>
-
-    <div class="content">
-        <div class="form-group">
-            <label>👩‍🏫 Nombre del Docente:</label>
-            <input type="text" id="docente" value="María Fernanda Torres - Orientadora" placeholder="Nombre del docente">
-        </div>
-
-        <div class="form-group">
-            <label>🎒 Nombre del Estudiante:</label>
-            <input type="text" id="estudiante" placeholder="Ej. Juanito Pérez">
-        </div>
-
-        <div class="form-group">
-            <label>📚 Grado:</label>
-            <select id="grado" onchange="updateChecklist()">
-                <option value="">Selecciona...</option>
-                <option value="prejardin">Pre-Jardín / Jardín</option>
-                <option value="transicion">Transición / Primero</option>
-                <option value="2">Grado Segundo</option>
-                <option value="3">Grado Tercero</option>
-                <option value="4">Grado Cuarto</option>
-                <option value="5">Grado Quinto</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>🎯 Área a Evaluar:</label>
-            <select id="area" onchange="updateChecklist()">
-                <option value="">Selecciona...</option>
-                <option value="lectura">📖 Lectura</option>
-                <option value="escritura">✏️ Escritura</option>
-                <option value="matematica">🧮 Matemáticas</option>
-                <option value="comportamiento">💖 Comportamiento</option>
-            </select>
-        </div>
-
-        <div id="checklist-container" class="hidden">
-            <form id="eval-form">
-                <div id="checklist-items"></div>
-            </form>
-        </div>
-        
-        <div class="app-credits">Created by Maria Torres - Orientadora</div>
-    </div>
-
-    <div id="fab-generate" class="floating-action hidden">
-        <button type="button" class="btn-main" style="background-color: #52b788;" onclick="generateReport()">✨ Generar Matriz de Resultados</button>
-    </div>
-</div>
-
-<!-- PANTALLA: REPORTE FINAL -->
-<div id="screen-results" class="screen">
-    <div class="app-header" style="background-color: #b5e48c; padding: 15px; border-radius:0 0 20px 20px; color: #2d6a4f;">
-        <div style="text-align:left; font-weight:bold; cursor:pointer; margin-bottom: 10px;" onclick="navigate('screen-form')">
-            ⬅️ Modificar Respuestas
-        </div>
-        <img src="mascota.png" alt="Logo EduScope" class="app-logo" style="width: 60px; height: 60px; border-width: 2px;" onerror="this.style.display='none'">
-        <h1 style="margin-top:5px; font-size: 1.3em;">📊 Matriz de Ajustes</h1>
-    </div>
-
-    <div class="content">
-        <div class="report-card">
-            <strong id="rep-estudiante" style="color: #2d6a4f; font-size: 1.2em;"></strong><br>
-            <span id="rep-detalles" style="font-size:0.9em; color:#666;"></span>
-        </div>
-
-        <!-- CONCEPTO PEDAGÓGICO FINAL -->
-        <div class="concepto-final-box" style="border-color: #b5e48c; background: #f4fbf0;">
-            <div class="concepto-title" style="color: #2d6a4f;">📋 Concepto Pedagógico Final</div>
-            <div id="concepto-list">
-                <div class="concepto-item" id="c_esperado">
-                    <input type="checkbox" id="cb_esperado"> <label>Desempeño acorde a lo esperado para el grado.</label>
+    
+    <div class="content" style="padding-bottom: 80px;">
+        <form id="unified-form">
+            <!-- 1. Datos -->
+            <div class="form-group">
+                <div class="section-header">1. Datos de Identificación</div>
+                <input type="text" id="cp_nombre" placeholder="Nombre completo del estudiante" required>
+                <div style="display:flex; gap:10px;">
+                    <input type="number" id="cp_edad" placeholder="Edad" required>
+                    <select id="cp_grado" required onchange="renderChecklists()">
+                        <option value="">Seleccione el Grado...</option>
+                        <option value="Preescolar">Pre-Jardín / Jardín / Transición</option>
+                        <option value="Primero">Grado Primero</option>
+                        <option value="Segundo">Grado Segundo</option>
+                        <option value="Tercero">Grado Tercero</option>
+                        <option value="Cuarto">Grado Cuarto</option>
+                        <option value="Quinto">Grado Quinto</option>
+                    </select>
                 </div>
-                <div class="concepto-item" id="c_fortalecer">
-                    <input type="checkbox" id="cb_fortalecer"> <label id="lbl_fortalecer">Requiere fortalecimiento pedagógico en procesos específicos.</label>
+                <input type="text" id="cp_diagnostico" placeholder="Diagnóstico médico o Alerta pedagógica" required>
+                
+                <label>Datos Profesionales:</label>
+                <input type="text" id="cp_docente" placeholder="Nombre del Docente Titular" required>
+                <input type="text" id="cp_area_docente" placeholder="Área o Asignatura" required>
+                <input type="text" id="cp_orientadora" placeholder="Nombre de la Orientadora" value="María Fernanda Torres Pérez" required>
+            </div>
+
+            <!-- 2. DUA -->
+            <div class="form-group">
+                <div class="section-header">2. Perfil de Aprendizaje (DUA)</div>
+                <label>Implicación (Motivación):</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" name="dua_impl" value="interés genuino por temas nuevos"> Muestra interés genuino por temas nuevos.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_impl" value="participación guiada por sus propios intereses"> Participa activamente cuando se relaciona con sus intereses.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_impl" value="requerimiento de motivación constante y atención positiva"> Requiere motivación constante y llamados de atención positivos.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_impl" value="tendencia a la frustración ante el error"> Se frustra con facilidad ante los retos o errores.</label>
                 </div>
-                <div class="concepto-item" id="c_seguimiento">
-                    <input type="checkbox" id="cb_seguimiento"> <label>Requiere seguimiento institucional y estrategias de apoyo en aula.</label>
+                <label>Representación (Comprensión):</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" name="dua_rep" value="canales visuales como imágenes, videos y esquemas"> Visual (Imágenes, videos, mapas).</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_rep" value="canales kinestésicos mediante la manipulación de material concreto"> Kinestésica/Manipulativa (Material concreto).</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_rep" value="canales auditivos a través de explicaciones o debates"> Auditiva (Explicaciones orales, debates).</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_rep" value="instrucciones fragmentadas paso a paso"> Requiere instrucciones fragmentadas (paso a paso).</label>
                 </div>
-                <div class="concepto-item" id="c_remision">
-                    <input type="checkbox" id="cb_remision"> <label>Se recomienda remisión para valoración complementaria (fonoaudiología, neuropsicología y/o psicología), según análisis de resultados.</label>
+                <label>Acción y Expresión:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" name="dua_exp" value="evaluaciones orales o exposiciones verbales"> Exposiciones o participación oral.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_exp" value="proyectos prácticos, dibujos o representaciones manuales"> Proyectos prácticos, dibujos o representaciones artísticas.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_exp" value="el uso de herramientas tecnológicas adaptadas"> Uso de herramientas digitales o tecnológicas.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="dua_exp" value="tiempos extendidos o flexibilizados"> Requiere más tiempo para ejecutar las tareas o evaluaciones.</label>
                 </div>
             </div>
-        </div>
 
-        <h3 style="color: #2d6a4f; font-size: 1.1em; border-bottom: 2px solid #b5e48c; padding-bottom: 5px;">⚠️ Áreas e Ítems a Intervenir:</h3>
-        
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr style="background-color: #74c69d; color: white;">
-                        <th style="width: 25%;">Proceso Evaluado y Dificultades Detectadas</th>
-                        <th style="width: 20%;">Orientación / Luces</th>
-                        <th style="width: 25%;">🏫 Ajuste en el Aula (Docente)</th>
-                        <th style="width: 30%;">🏡 Ajuste para el Hogar (Familia)</th>
-                    </tr>
-                </thead>
-                <tbody id="results-table-body"></tbody>
-            </table>
-        </div>
+            <!-- 3. Socioemocional -->
+            <div class="form-group">
+                <div class="section-header">3. Convivencia y Dinámica Vincular</div>
+                <label>Interacción con Pares:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" name="soc_pares" value="se integra con facilidad en dinámicas grupales y es empático con sus pares"> Se integra con facilidad en dinámicas grupales y respeta turnos.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="soc_pares" value="tiende al aislamiento espontáneo en los tiempos libres"> Tiende al aislamiento espontáneo durante descansos.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="soc_pares" value="presenta dificultad para resolver conflictos de forma pacífica"> Dificultad para resolver conflictos de forma pacífica.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="soc_pares" value="se observa vulnerable a la exclusión por parte del grupo"> Es vulnerable a la influencia o exclusión por terceros.</label>
+                </div>
+                
+                <label>Relación con la Norma y Autoridad:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="radio" name="cp_norma" value="Comprende y acata los acuerdos de convivencia de forma autónoma." required> Comprende y acata los acuerdos de convivencia de forma autónoma.</label>
+                    <label class="checkbox-label"><input type="radio" name="cp_norma" value="Requiere recordatorios y mediación constante para cumplir las normas."> Requiere recordatorios y mediación constante para cumplir las normas.</label>
+                    <label class="checkbox-label"><input type="radio" name="cp_norma" value="Cuestiona o desafía las figuras de autoridad frecuentemente."> Cuestiona o desafía las figuras de autoridad frecuentemente.</label>
+                    <label class="checkbox-label"><input type="radio" name="cp_norma" value="Se muestra indiferente o pasivo frente a las dinámicas normativas."> Se muestra indiferente o pasivo frente a las dinámicas normativas.</label>
+                </div>
 
-        <!-- ESTRATEGIAS DUA -->
-        <div class="dua-section" id="dua-container" style="border-left-color: #52b788;">
-            <div class="dua-title" style="color: #2d6a4f;">🌟 Top 10: Estrategias DUA Generales</div>
-            <ul class="dua-list" id="dua-list-items">
-                <!-- Se inyectan dinámicamente -->
-            </ul>
-        </div>
-        
-        <div class="app-credits">Created by Maria Torres - Orientadora</div>
+                <label>Acompañamiento Familiar:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" name="soc_fam" value="un acompañamiento constante y corresponsable"> Acompañamiento constante y corresponsable.</label>
+                    <label class="checkbox-label"><input type="checkbox" name="soc_fam" value="un apoyo intermitente restringido a llamados de atención"> Apoyo intermitente (solo asiste bajo citación).</label>
+                    <label class="checkbox-label"><input type="checkbox" name="soc_fam" value="la presencia de signos de alerta por descuido o inasistencias"> Signos de alerta (inasistencias frecuentes, descuido).</label>
+                </div>
+            </div>
+
+            <!-- 4. Barreras Formulario Completo -->
+            <div class="form-group">
+                <div class="section-header">4. Identificación de Barreras (Decreto 1421)</div>
+                <p class="helper-text" style="color: #6c3483;">Identifique qué obstáculos pone el contexto institucional. El sistema generará las estrategias automáticamente en el informe final.</p>
+                
+                <details>
+                    <summary>1. Barreras Actitudinales</summary>
+                    <div class="details-content">
+                        <div class="checkbox-group" style="margin-bottom:0; border:none;">
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existen bajas expectativas frente a las capacidades del estudiante."> Bajas expectativas frente a las capacidades del estudiante.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="El estudiante es etiquetado por su diagnóstico, condición o dificultad."> Etiquetado por su diagnóstico, condición o dificultad.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe rechazo, discriminación, burlas o aislamiento por parte de sus compañeros."> Rechazo, discriminación o aislamiento por pares.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Se presenta sobreprotección que limita su autonomía."> Sobreprotección que limita su autonomía.</label>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>2. Barreras Pedagógicas o Didácticas</summary>
+                    <div class="details-content">
+                        <div class="checkbox-group" style="margin-bottom:0; border:none;">
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Se utiliza una única metodología de enseñanza para todos los estudiantes."> Uso de una única metodología de enseñanza para todos.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Las instrucciones son extensas, complejas o poco claras."> Instrucciones extensas, complejas o poco claras.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Predominan las actividades de copia, memorización o repetición."> Predominio de actividades de copia o memorización.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="No se utilizan apoyos visuales o material concreto."> Ausencia de apoyos visuales o material concreto.</label>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>3. Barreras Curriculares y Evaluativas</summary>
+                    <div class="details-content">
+                        <div class="checkbox-group" style="margin-bottom:0; border:none;">
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Los objetivos de aprendizaje son rígidos y no consideran las características del estudiante."> Objetivos rígidos que no consideran sus características.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="No se flexibilizan los tiempos para desarrollar las actividades o evaluaciones."> No se flexibilizan tiempos de desarrollo/evaluación.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="La evaluación se realiza únicamente mediante pruebas escritas."> Evaluación realizada únicamente mediante pruebas escritas.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Se evalúa principalmente el resultado y no el proceso."> Se evalúa principalmente el resultado y no el proceso.</label>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>4. Barreras Físicas, Comunicativas y Tecnológicas</summary>
+                    <div class="details-content">
+                        <div class="checkbox-group" style="margin-bottom:0; border:none;">
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="El estudiante presenta dificultad para comprender instrucciones orales."> Dificultad para comprender instrucciones orales.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Los textos utilizados son extensos o presentan lenguaje complejo."> Textos muy extensos o de lenguaje complejo.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe exceso de ruido, estímulos visuales o distractores."> Exceso de ruido o distractores visuales.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Los recursos digitales no son accesibles o hay dificultad tecnológica."> Dificultad de acceso o manejo tecnológico.</label>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>5. Barreras Institucionales, Sociales y Familiares</summary>
+                    <div class="details-content">
+                        <div class="checkbox-group" style="margin-bottom:0; border:none;">
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe poca articulación entre docentes y profesionales de apoyo."> Poca articulación entre docentes y equipo de apoyo.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe poca comunicación entre la familia y la institución educativa."> Poca comunicación familia-institución.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existen dificultades económicas para acceder a materiales, transporte o conectividad."> Dificultades económicas para materiales o recursos.</label>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 5. Áreas a Evaluar (Múltiple) -->
+            <div class="form-group" style="background-color: #f4fbf0; border-color: #b5e48c;">
+                <div class="section-header" style="color: #2d6a4f;">5. Áreas para Generación de Ajustes</div>
+                <p class="helper-text" style="color: #385723;">Seleccione las áreas a evaluar. El sistema cargará automáticamente los procesos académicos y conductuales acordes al <strong>grado exacto</strong> seleccionado en la primera sección.</p>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Lectura" onchange="renderChecklists()"> 📖 Lectura</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Escritura" onchange="renderChecklists()"> ✏️ Escritura</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Matematicas" onchange="renderChecklists()"> 🧮 Matemáticas</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Comportamiento" onchange="renderChecklists()"> 💖 Comportamiento</label>
+                </div>
+
+                <div id="checklists-container"></div>
+            </div>
+        </form>
     </div>
 
     <div class="floating-action">
-        <button class="btn-main" style="background-color: #52b788;" onclick="window.print()">🖨️ Exportar Informe (PDF)</button>
+        <button type="button" class="btn-main" onclick="generarInformeIntegral()">📄 Generar Informe PDF</button>
+    </div>
+</div>
+
+<!-- PANTALLA REPORTE (IMPRESIÓN) -->
+<div id="screen-unified-report" class="screen">
+    <div class="app-header">
+        <div style="text-align:left; font-weight:bold; cursor:pointer; margin-bottom: 5px; color: #4a235a;" onclick="navigate('screen-unified-form')">⬅️ Editar Datos</div>
+    </div>
+    <div class="content" style="padding-bottom: 80px;">
+        <div class="doc-container" id="printable-doc">
+            <div class="doc-header">
+                <div style="display:flex; justify-content:center; gap:15px; margin-bottom:10px;">
+                    <img src="Logo.jpg" style="height:60px;" alt="Logo" onerror="this.style.display='none'">
+                    <img src="mascota.png" style="height:60px;" alt="Mascota" onerror="this.style.display='none'">
+                </div>
+                <h2>Colegio Bernardo Jaramillo IED</h2>
+                <p>Bogotá - Localidad de Tunjuelito</p>
+                <p style="margin-top: 5px; font-weight: bold;">CONCEPTO PEDAGÓGICO E INFORME DE AJUSTES INDIVIDUALES</p>
+                <p style="font-size: 0.8em;">Marco del Decreto 1421 de 2017</p>
+            </div>
+
+            <p style="text-align: right; font-size: 0.9em;"><strong>FECHA:</strong> <span id="out_fecha"></span></p>
+
+            <div class="doc-section-title">1. Datos Generales</div>
+            <table class="doc-table">
+                <tr><th>Estudiante:</th><td id="out_nombre"></td></tr>
+                <tr><th>Edad / Grado:</th><td><span id="out_edad"></span> / <span id="out_grado"></span></td></tr>
+                <tr><th>Diagnóstico / Alerta:</th><td id="out_diagnostico"></td></tr>
+                <tr><th>Docente:</th><td><span id="out_docente_val"></span> (<span id="out_area_val"></span>)</td></tr>
+            </table>
+
+            <div class="doc-section-title">2. Concepto Pedagógico Descriptivo</div>
+            <div class="doc-text-block" id="out_concepto_redactado" style="line-height:1.6; text-align:justify;"></div>
+
+            <div class="doc-section-title">3. Análisis de Barreras y Estrategias Sugeridas</div>
+            <div class="doc-text-block">
+                A partir de la valoración del contexto áulico e institucional frente al estudiante, se identifican las siguientes barreras y se determinan las respectivas estrategias de ajuste razonable:
+                <table class="results-table" style="margin-top:10px;">
+                    <thead><tr><th style="width:45%;">Barrera Identificada en el Entorno</th><th>Estrategia Institucional Sugerida</th></tr></thead>
+                    <tbody id="out_barreras_table"></tbody>
+                </table>
+            </div>
+
+            <div class="doc-section-title">4. Matriz de Evaluación por Áreas y Procesos</div>
+            <div id="out_matrices_areas"></div>
+            
+            <div class="doc-section-title">5. Criterio Pedagógico Final</div>
+            <div class="concepto-final-box" style="margin-bottom: 30px;">
+                <div class="concepto-item" id="c_esperado">
+                    <input type="checkbox" id="cb_esperado"> <label>Desempeño acorde a lo esperado para el grado en los procesos evaluados.</label>
+                </div>
+                <div class="concepto-item" id="c_fortalecer">
+                    <input type="checkbox" id="cb_fortalecer"> <label id="lbl_fortalecer">Requiere fortalecimiento pedagógico constante en procesos formativos detectados "en proceso".</label>
+                </div>
+                <div class="concepto-item" id="c_seguimiento">
+                    <input type="checkbox" id="cb_seguimiento"> <label>Requiere seguimiento institucional, compromisos familiares y aplicación obligatoria de estrategias en aula.</label>
+                </div>
+                <div class="concepto-item" id="c_remision">
+                    <input type="checkbox" id="cb_remision"> <label>Dificultades significativas: Se recomienda remisión para valoración complementaria externa (neuropsicología, fonoaudiología, etc.).</label>
+                </div>
+            </div>
+
+            <div class="signatures">
+                <div class="sig-line"><span id="firma_docente_nombre"></span><br><span id="firma_docente_area"></span></div>
+                <div class="sig-line"><span id="firma_orientadora_nombre"></span><br>Orientación Escolar</div>
+            </div>
+        </div>
+    </div>
+    <div class="floating-action">
+        <button class="btn-main" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
     </div>
 </div>
 
 <script>
-    // NAVEGACIÓN
     function navigate(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
         window.scrollTo(0,0);
     }
 
-    // BASE DE DATOS EXACTA
-    const database = {
-        lectura: {
-            "2": [
-                { area: "CONCIENCIA FONOLÓGICA", items: ["Reconoce sonidos iniciales y finales en palabras.", "Segmenta palabras en sílabas correctamente.", "Identifica la sílaba o sonido que falta en una palabra.", "Relaciona adecuadamente sonidos y letras."], adjustment: { orientation: "Dificultades en la consolidación de la ruta fonológica primaria y correspondencia grafema-fonema.", classroom: "Bingo de Sílabas: El docente canta las sílabas en disputa; el niño las localiza, resalta y lee en voz alta.", home: "Jugar al 'Veo-veo' con sonidos iniciales en casa. Segmentar con aplausos los nombres de los alimentos antes de comer." }},
-                { area: "DECODIFICACIÓN Y PRECISIÓN LECTORA", items: ["Lee palabras frecuentes de forma correcta.", "Lee palabras polisilábicas sin omisiones significativas.", "Lee pseudopalabras aplicando las reglas fonológicas.", "Mantiene el orden correcto de letras y sílabas durante la lectura.", "Presenta pocas o ninguna sustitución, omisión o inversión de letras y sílabas."], adjustment: { orientation: "Uso ineficiente de la ruta léxica o visual. Presencia de errores de exactitud por adivinación.", classroom: "Uso de una guía o ventana de lectura física para enfocar la mirada y evitar saltos de renglón. Lectura repetida.", home: "Lectura compartida guiando el recorrido con el dedo. Resaltar carteles públicos en el entorno diario." }},
-                { area: "FLUIDEZ LECTORA", items: ["Lee con ritmo adecuado para su edad.", "Mantiene continuidad durante la lectura.", "Realiza pausas apropiadas según la puntuación.", "Lee con seguridad y sin excesiva silabeación."], adjustment: { orientation: "Falta de automatización lectora. El esfuerzo mecánico consume sus recursos de atención impidiendo la fluidez.", classroom: "Lectura en Eco: El docente modela la entonación de una frase corta y el estudiante la imita de inmediato de un solo golpe.", home: "Lectura teatralizada en familia intercambiando personajes breves utilizando entonaciones divertidas." }},
-                { area: "COMPRENSIÓN LECTORA", items: ["Identifica información explícita en el texto.", "Responde correctamente preguntas literales.", "Realiza inferencias simples a partir de la lectura.", "Identifica personajes, acciones y hechos principales.", "Expresa comprensión global del texto leído."], adjustment: { orientation: "Dificultades en memoria de trabajo o procesamiento semántico básico. Sobrecarga cognitiva al leer.", classroom: "El Semáforo de la Lectura: Detener al estudiante en los puntos rojos asignados y pedirle que dibuje lo comprendido.", home: "Preguntas guiadas al final de cuentos o películas cortas (¿Quién era el personaje? ¿Qué problema tuvo?)." }},
-                { area: "SEGUIMIENTO DE INSTRUCCIONES ESCRITAS", items: ["Comprende instrucciones escritas simples.", "Ejecuta correctamente una instrucción escrita.", "Sigue secuencias de dos o más instrucciones.", "Realiza la actividad solicitada sin apoyo constante del docente."], adjustment: { orientation: "Baja retención de memoria de trabajo para instrucciones escritas. Requiere apoyo visual estructurado.", classroom: "Subrayado de Acción: Enseñar a tachar o resaltar con amarillo el verbo de acción de la instrucción antes de empezar a ejecutarla.", home: "Mini-Chef: Preparar una receta muy sencilla leyendo las instrucciones paso a paso. No avanzar al siguiente sin tachar el anterior." }}
+    // BASE DE DATOS ESTRUCTURADA POR ÁREA Y GRADO
+    const dbProcesos = {
+        "Comportamiento": {
+            "Preescolar": [
+                { proc: "Autorregulación y Control de Impulsos", items: ["Hace berrinches prolongados o arrebata objetos.", "Le cuesta esperar su turno o calmarse."], adjAula: "Anticipación visual, 'Rincón de la calma', Modelado de lenguaje.", adjCasa: "La Caja de la Calma: respiración modelada." },
+                { proc: "Interacción Social", items: ["Agresividad física (muerde, empuja).", "Se aísla o le cuesta compartir el espacio."], adjAula: "Juegos cooperativos guiados, uso de cuentos sobre emociones.", adjCasa: "Títeres Mediadores para ensayar respuestas." },
+                { proc: "Adaptación a Rutinas", items: ["Llora en transiciones.", "No sigue instrucciones de un solo paso."], adjAula: "Horario visual, temporizadores, instrucciones cortas.", adjCasa: "Canciones de Transición para anticipar rutinas." }
             ],
-            "3_4": [
-                { area: "CONCIENCIA FONOLÓGICA", items: ["Identifica rimas y semejanzas sonoras.", "Segmenta palabras en sílabas correctamente.", "Reconstruye palabras a partir de sílabas.", "Analiza la estructura sonora de palabras complejas."], adjustment: { orientation: "Dificultades en el procesamiento de la estructura interna de la palabra afectando su fluidez y ortografía.", classroom: "Juegos de rimas visuales y manipulación silábica con material concreto.", home: "Juegos de palabras encadenadas en familia (ej: casa -> sapo -> polo)." }},
-                { area: "DECODIFICACIÓN Y PRECISIÓN LECTORA", items: ["Lee palabras de complejidad media y alta.", "Lee pseudopalabras aplicando reglas fonológicas.", "Reconoce palabras correctamente escritas.", "Presenta pocas omisiones, sustituciones o inversiones.", "Mantiene precisión durante la lectura."], adjustment: { orientation: "Dificultades en consolidar el léxico ortográfico visual. Inventa o adivina el final de palabras largas.", classroom: "Cazadores de palabras: Ubicar y subrayar términos complejos dados por el docente antes de la lectura global.", home: "Identificar y clasificar palabras largas en revistas o periódicos." }},
-                { area: "FLUIDEZ LECTORA", items: ["Lee con ritmo adecuado para su edad.", "Mantiene continuidad durante la lectura.", "Respeta signos de puntuación.", "Utiliza entonación apropiada."], adjustment: { orientation: "Fallas persistentes en procesos sintácticos de puntuación y entonación. Lectura monótona.", classroom: "Marcadores de respiración: El estudiante resalta puntos de rojo (pausa larga) y comas de azul (pausa corta).", home: "Leer instrucciones de juegos de mesa familiares en voz alta, exagerando las pausas de los puntos." }},
-                { area: "COMPRENSIÓN LECTORA", items: ["Identifica información explícita en el texto.", "Responde correctamente preguntas literales.", "Realiza inferencias simples a partir de la lectura.", "Identifica personajes, acciones y hechos principales.", "Expresa comprensión global del texto leído."], adjustment: { orientation: "Dificultad para deducir información implícita o sacar conclusiones lógicas de un texto.", classroom: "Técnica de 'Detective de pistas': Marcar con post-its las frases clave que comprueban hipótesis hechas antes de leer.", home: "Establecer diálogos críticos sobre noticias o películas preguntando '¿Por qué crees que hizo eso el personaje?'." }},
-                { area: "SEGUIMIENTO DE INSTRUCCIONES ESCRITAS", items: ["Comprende instrucciones escritas simples.", "Ejecuta correctamente una instrucción escrita.", "Sigue secuencias de dos o más instrucciones.", "Realiza la actividad solicitada sin apoyo constante del docente."], adjustment: { orientation: "Debilidad en el auto-monitoreo de comprensión. Lee mal una palabra que cambia el sentido pero no se detiene a corregir.", classroom: "Tarjeta de sentido: Levantar una tarjeta roja si al leer una oración siente que 'suena raro' o no tiene lógica, y volver a leer.", home: "Al leer cuentos, cometer un 'error intencional' divertido para ver si el niño está monitoreando el sentido de la lectura." }}
+            "Primero": [
+                { proc: "Autorregulación Conductual", items: ["Se levanta del puesto constantemente o interrumpe.", "Reacciona con llanto ante correcciones."], adjAula: "Semáforo del comportamiento, pausas activas.", adjCasa: "Termómetro Emocional para medir tolerancia." },
+                { proc: "Habilidades Sociales", items: ["Frecuentes conflictos en el recreo.", "No acepta perder en los juegos, le cuesta pedir perdón."], adjAula: "Role-playing de resolución pacífica.", adjCasa: "Juegos de mesa exclusivos para enseñar a perder." },
+                { proc: "Seguimiento de Instrucciones", items: ["No termina los trabajos por hablar.", "Olvida los pasos a seguir, requiere recordatorios."], adjAula: "Instrucciones segmentadas, Check-list visual.", adjCasa: "Mini Check-list con dibujos de pasos a seguir." }
             ],
-            "5": [
-                { area: "CONCIENCIA FONOLÓGICA", items: ["Reconoce prefijos y sufijos.", "Comprende cambios de significado en palabras derivadas.", "Identifica familias de palabras.", "Analiza la estructura de palabras complejas."], adjustment: { orientation: "Dificultades para comprender la estructura morfológica de palabras de mayor nivel de abstracción.", classroom: "Desarmar palabras complejas en piezas de rompecabezas (prefijo, raíz, sufijo).", home: "Jugar a inventar palabras nuevas uniendo prefijos conocidos con palabras comunes y debatir su significado." }},
-                { area: "DECODIFICACIÓN Y PRECISIÓN LECTORA", items: ["Lee palabras académicas propias del grado.", "Lee pseudopalabras aplicando reglas fonológicas.", "Reconoce palabras correctamente escritas.", "Presenta pocas omisiones, sustituciones o inversiones.", "Mantiene precisión durante la lectura."], adjustment: { orientation: "El nivel de abstracción del lenguaje técnico propio del grado interfiere con su precisión y fluidez.", classroom: "Creación de un Glosario visual. Lectura previa de palabras clave antes de abordar los textos académicos.", home: "Fomentar el uso de diccionarios ilustrados para buscar palabras desconocidas de sus tareas." }},
-                { area: "FLUIDEZ LECTORA", items: ["Mantiene ritmo adecuado en la lectura.", "Respeta signos de puntuación.", "Utiliza entonación apropiada.", "Lee con continuidad."], adjustment: { orientation: "La falta de fluidez en textos extensos genera fatiga cognitiva, afectando la asimilación del contenido.", classroom: "Lectura dramatizada de textos históricos o científicos, asignando colores a las pausas.", home: "Implementar tiempos de lectura compartida de temas de su interés, turnándose por párrafos." }},
-                { area: "COMPRENSIÓN LECTORA", items: ["Identifica información explícita.", "Realiza inferencias simples a partir de la lectura.", "Relaciona ideas del texto.", "Argumenta opiniones con base en la lectura.", "Analiza situaciones planteadas en el texto."], adjustment: { orientation: "Dificultades en la integración profunda de la información y el razonamiento crítico avanzado.", classroom: "Uso de Mapas conceptuales y organizadores gráficos entregados antes de la lectura para guiar la comprensión.", home: "Estimular la argumentación lógica en decisiones familiares basándose en pequeños textos o folletos leídos juntos." }},
-                { area: "SEGUIMIENTO DE INSTRUCCIONES ESCRITAS", items: ["Comprende instrucciones complejas.", "Sigue secuencias de varios pasos.", "Ejecuta correctamente las tareas solicitadas.", "Trabaja con autonomía."], adjustment: { orientation: "Dificultad para mantener en la memoria de trabajo instrucciones compuestas de múltiples variables.", classroom: "Proveer listas de verificación (check-lists) para ir tachando los pasos de las tareas largas a medida que se cumplen.", home: "Implementar el uso de agendas estructuradas en el hogar para organizar rutinas compuestas y seguimiento de tareas." }}
+            "Segundo": [
+                { proc: "Autorregulación Conductual", items: ["Se levanta del puesto constantemente o interrumpe.", "Reacciona con llanto ante correcciones."], adjAula: "Semáforo del comportamiento, pausas activas.", adjCasa: "Termómetro Emocional para medir tolerancia." },
+                { proc: "Habilidades Sociales", items: ["Frecuentes conflictos en el recreo.", "No acepta perder en los juegos, le cuesta pedir perdón."], adjAula: "Role-playing de resolución pacífica.", adjCasa: "Juegos de mesa exclusivos para enseñar a perder." },
+                { proc: "Seguimiento de Instrucciones", items: ["No termina los trabajos por hablar.", "Olvida los pasos a seguir, requiere recordatorios."], adjAula: "Instrucciones segmentadas, Check-list visual.", adjCasa: "Mini Check-list con dibujos de pasos a seguir." }
+            ],
+            "Tercero": [
+                { proc: "Autorregulación y Funciones Ejecutivas", items: ["Reacciones verbales impulsivas (contesta mal).", "Desorganización extrema, posterga tareas y se rinde rápido."], adjAula: "Técnicas de mindfulness, apoyo estructurado en agendas.", adjCasa: "Diario de Descargo emocional antes de tareas." },
+                { proc: "Relaciones Interpersonales", items: ["Promueve o sufre exclusión de grupos.", "Mantiene conflictos verbales prolongados o falta de empatía."], adjAula: "Círculos de diálogo, mediación entre pares.", adjCasa: "Fórmula de 'Mensajes Yo' para conflictos familiares." },
+                { proc: "Responsabilidad y Seguimiento de Normas", items: ["Desafía normas de forma sutil.", "Olvida materiales a diario y no asume consecuencias."], adjAula: "Contratos conductuales co-creados, autoevaluación.", adjCasa: "Consecuencias lógicas pre-establecidas sin castigo punitivo." }
+            ],
+            "Cuarto": [
+                { proc: "Autorregulación y Funciones Ejecutivas", items: ["Reacciones verbales impulsivas (contesta mal).", "Desorganización extrema, posterga tareas y se rinde rápido."], adjAula: "Técnicas de mindfulness, apoyo estructurado en agendas.", adjCasa: "Diario de Descargo emocional antes de tareas." },
+                { proc: "Relaciones Interpersonales", items: ["Promueve o sufre exclusión de grupos.", "Mantiene conflictos verbales prolongados o falta de empatía."], adjAula: "Círculos de diálogo, mediación entre pares.", adjCasa: "Fórmula de 'Mensajes Yo' para conflictos familiares." },
+                { proc: "Responsabilidad y Seguimiento de Normas", items: ["Desafía normas de forma sutil.", "Olvida materiales a diario y no asume consecuencias."], adjAula: "Contratos conductuales co-creados, autoevaluación.", adjCasa: "Consecuencias lógicas pre-establecidas sin castigo punitivo." }
+            ],
+            "Quinto": [
+                { proc: "Autorregulación y Funciones Ejecutivas", items: ["Reacciones verbales impulsivas (contesta mal).", "Desorganización extrema, posterga tareas y se rinde rápido."], adjAula: "Técnicas de mindfulness, apoyo estructurado en agendas.", adjCasa: "Diario de Descargo emocional antes de tareas." },
+                { proc: "Relaciones Interpersonales", items: ["Promueve o sufre exclusión de grupos.", "Mantiene conflictos verbales prolongados o falta de empatía."], adjAula: "Círculos de diálogo, mediación entre pares.", adjCasa: "Fórmula de 'Mensajes Yo' para conflictos familiares." },
+                { proc: "Responsabilidad y Seguimiento de Normas", items: ["Desafía normas de forma sutil.", "Olvida materiales a diario y no asume consecuencias."], adjAula: "Contratos conductuales co-creados, autoevaluación.", adjCasa: "Consecuencias lógicas pre-establecidas sin castigo punitivo." }
             ]
         },
-        escritura: {
-            "2": [
-                { area: "PROCESOS FONOLÓGICOS", items: ["Escribe palabras relacionando sonidos y letras.", "Identifica letras faltantes en palabras.", "Escribe palabras dictadas correctamente.", "Presenta pocas omisiones o sustituciones."], adjustment: { orientation: "Fallas en el desarrollo grafomotriz inicial o inmadurez en la asociación fonema-grafema. Escribe como suena.", classroom: "Segmentación silábica mediante golpes de voz (palmadas) y fichas táctiles para cada sílaba antes de transcribir.", home: "Modelar el trazo de letras en superficies sensoriales (arena, espuma) para afianzar el mapa motor sin frustración." }},
-                { area: "PROCESOS MORFOSINTÁCTICOS", items: ["Organiza palabras para formar oraciones.", "Completa oraciones coherentemente.", "Escribe oraciones con estructura adecuada.", "Utiliza vocabulario acorde a su edad."], adjustment: { orientation: "Limitación en estructuración del lenguaje escrito. Produce oraciones desorganizadas o incompletas.", classroom: "Rompecabezas de oraciones: entregar tarjetas de colores con palabras sueltas para armar la oración físicamente antes de escribir.", home: "Jugar a 'alargar la oración' de forma oral (ej: El perro corre -> El perro negro corre rápido)." }},
-                { area: "PLANIFICACIÓN ESCRITA", items: ["Organiza ideas de manera lógica.", "Mantiene secuencia temporal.", "Produce ideas relacionadas con el tema.", "Desarrolla mensajes completos."], adjustment: { orientation: "Déficit en funciones ejecutivas de organización secuencial. Plasma ideas aisladas sin conexión.", classroom: "Tira cómica de 3 pasos: Hoja con cuadros 'Primero', 'Luego', 'Al final'. Dibuja la historia y escribe una oración bajo cada uno.", home: "Co-crear listas de compras del hogar organizadas por categorías o escribir juntos un diario de un dibujo." }},
-                { area: "ASPECTOS MOTORES Y GRAFOMOTORES", items: ["Mantiene letra legible.", "Conserva tamaño uniforme.", "Respeta espacios entre palabras.", "Sigue el renglón adecuadamente.", "Presenta adecuada organización espacial."], adjustment: { orientation: "Dificultades en procesamiento visoespacial y motricidad fina. Letra irregular o desorganizada.", classroom: "Cuaderno ferrocarril o resaltador: Resaltar con amarillo el renglón donde debe escribir para no salirse de 'la casita'.", home: "Uso del 'dedo espaciador' físico (o palito de helado) entre palabras. Actividades de recorte libre y plastilina." }}
+        "Lectura": {
+            "Segundo": [
+                { proc: "Conciencia Fonológica", items: ["Reconoce sonidos iniciales y finales en palabras.", "Segmenta palabras en sílabas correctamente.", "Identifica la sílaba o sonido que falta.", "Relaciona adecuadamente sonidos y letras."], adjAula: "Juegos de conciencia fonológica, dictado guiado.", adjCasa: "Bingo de sílabas y letras manipulables." },
+                { proc: "Decodificación y Precisión Lectora", items: ["Lee palabras frecuentes de forma correcta.", "Lee palabras polisilábicas sin omisiones.", "Lee pseudopalabras aplicando reglas.", "Mantiene el orden correcto de letras.", "Presenta pocas omisiones o inversiones."], adjAula: "Ventana de lectura, evitar lectura en voz alta forzada.", adjCasa: "Cazadores de palabras frecuentes." },
+                { proc: "Fluidez Lectora", items: ["Lee con ritmo adecuado para su edad.", "Mantiene continuidad durante la lectura.", "Realiza pausas apropiadas según puntuación.", "Lee con seguridad sin excesiva silabeación."], adjAula: "Lectura en Eco (modelado).", adjCasa: "Lectura repetida cronometrada sin presión." },
+                { proc: "Comprensión Lectora", items: ["Identifica información explícita.", "Responde correctamente preguntas literales.", "Realiza inferencias simples.", "Identifica personajes, acciones y hechos.", "Expresa comprensión global del texto."], adjAula: "El Semáforo de la Lectura (parar y analizar).", adjCasa: "Crear mapas conceptuales con dibujos." },
+                { proc: "Seguimiento de Instrucciones", items: ["Comprende instrucciones escritas simples.", "Ejecuta correctamente una instrucción escrita.", "Sigue secuencias de dos o más instrucciones.", "Realiza la actividad sin apoyo constante."], adjAula: "Fragmentación de tareas.", adjCasa: "Seguir instrucciones visuales simples en casa." }
             ],
-            "3_4_5": [
-                { area: "PROCESOS FONOLÓGICOS Y ORTOGRÁFICOS", items: ["Escribe palabras relacionando sonidos y letras.", "Identifica letras faltantes en palabras.", "Escribe palabras dictadas correctamente.", "Presenta pocas omisiones o sustituciones."], adjustment: { orientation: "Memoria de trabajo ortográfica debilitada. Errores persistentes en palabras frecuentes o uso de reglas.", classroom: "Construir un Llavero Ortográfico personalizado (banco de palabras) para consulta permitida durante la clase.", home: "Instalar un tablero visual en la zona de estudio con las palabras que suele confundir para consulta libre." }},
-                { area: "PROCESOS MORFOSINTÁCTICOS", items: ["Organiza palabras para formar oraciones.", "Mantiene concordancia gramatical.", "Escribe oraciones con estructura adecuada.", "Utiliza vocabulario acorde a su edad."], adjustment: { orientation: "Dificultad para mantener la concordancia de género/número y estructuración fluida del texto.", classroom: "Entregar plantillas de escritura con conectores iniciales pre-impresos ('Había una vez...', 'Sin embargo...', 'Finalmente...').", home: "Pedir al estudiante que lea en voz alta lo que acaba de escribir para que él mismo escuche si 'suena bien' gramaticalmente." }},
-                { area: "PLANIFICACIÓN ESCRITA", items: ["Organiza ideas de manera lógica.", "Mantiene secuencia temporal.", "Desarrolla una idea principal.", "Produce textos breves comprensibles."], adjustment: { orientation: "Bloqueo ante el papel en blanco por fallas en la planificación ejecutiva y secuenciación de ideas.", classroom: "Mapa mental de 'Esqueleto de pescado' o 'Telaraña': Llenar burbujas (Personajes, Lugar, Problema, Solución) antes de redactar.", home: "Motivar al estudiante a narrar oralmente de principio a fin su idea antes de permitir que comience a escribir en papel." }},
-                { area: "ASPECTOS MOTORES Y GRAFOMOTORES", items: ["Mantiene letra legible.", "Conserva tamaño uniforme.", "Respeta espacios entre palabras.", "Sigue el renglón adecuadamente.", "Presenta adecuada organización espacial."], adjustment: { orientation: "Fatiga muscular, disgrafía o falta de conciencia del espacio gráfico en hojas sin pautas.", classroom: "Márgenes visuales: Dibujar línea roja gruesa al margen derecho para que sepa exactamente dónde frenar y cambiar de renglón.", home: "Fomentar el uso de teclados o medios digitales para textos muy extensos y así disminuir la carga motora." }}
+            "Tercero": [
+                { proc: "Conciencia Fonológica", items: ["Identifica rimas y semejanzas sonoras.", "Segmenta palabras en sílabas correctamente.", "Reconstruye palabras a partir de sílabas.", "Analiza la estructura sonora de palabras complejas."], adjAula: "Análisis silábico en pizarras individuales.", adjCasa: "Juegos verbales familiares." },
+                { proc: "Decodificación y Precisión", items: ["Lee palabras de complejidad media y alta.", "Lee pseudopalabras aplicando reglas fonológicas.", "Reconoce palabras correctamente escritas.", "Presenta pocas omisiones, sustituciones o inversiones.", "Mantiene precisión durante la lectura."], adjAula: "Banco de palabras visuales de la semana.", adjCasa: "Llavero ortográfico para consulta." },
+                { proc: "Fluidez Lectora", items: ["Lee con ritmo adecuado para su edad.", "Mantiene continuidad durante la lectura.", "Respeta signos de puntuación.", "Utiliza entonación apropiada."], adjAula: "Marcadores de respiración (colorear pausas).", adjCasa: "Lectura dramatizada con voces." },
+                { proc: "Comprensión Lectora", items: ["Identifica información explícita en el texto.", "Responde correctamente preguntas literales.", "Realiza inferencias simples a partir de la lectura.", "Identifica personajes, acciones y hechos.", "Expresa comprensión global."], adjAula: "Detective de pistas (uso de post-its).", adjCasa: "Diálogos sobre libros y formulación de preguntas." },
+                { proc: "Seguimiento de Instrucciones", items: ["Comprende instrucciones escritas simples.", "Ejecuta correctamente una instrucción.", "Sigue secuencias de dos o más instrucciones.", "Trabaja sin apoyo constante del docente."], adjAula: "Check-list visual de tareas en el pupitre.", adjCasa: "Recetas de cocina sencillas guiadas." }
+            ],
+            "Cuarto": [ 
+                { proc: "Conciencia Fonológica", items: ["Identifica rimas y semejanzas sonoras.", "Segmenta palabras en sílabas correctamente.", "Reconstruye palabras a partir de sílabas.", "Analiza la estructura sonora de palabras complejas."], adjAula: "Análisis silábico en pizarras individuales.", adjCasa: "Juegos verbales familiares." },
+                { proc: "Decodificación y Precisión", items: ["Lee palabras de complejidad media y alta.", "Lee pseudopalabras aplicando reglas fonológicas.", "Reconoce palabras correctamente escritas.", "Presenta pocas omisiones, sustituciones o inversiones.", "Mantiene precisión durante la lectura."], adjAula: "Banco de palabras visuales de la semana.", adjCasa: "Llavero ortográfico para consulta." },
+                { proc: "Fluidez Lectora", items: ["Lee con ritmo adecuado para su edad.", "Mantiene continuidad durante la lectura.", "Respeta signos de puntuación.", "Utiliza entonación apropiada."], adjAula: "Marcadores de respiración (colorear pausas).", adjCasa: "Lectura dramatizada con voces." },
+                { proc: "Comprensión Lectora", items: ["Identifica información explícita en el texto.", "Responde correctamente preguntas literales.", "Realiza inferencias simples a partir de la lectura.", "Identifica personajes, acciones y hechos.", "Expresa comprensión global."], adjAula: "Detective de pistas (uso de post-its).", adjCasa: "Diálogos sobre libros y formulación de preguntas." },
+                { proc: "Seguimiento de Instrucciones", items: ["Comprende instrucciones escritas simples.", "Ejecuta correctamente una instrucción.", "Sigue secuencias de dos o más instrucciones.", "Trabaja sin apoyo constante del docente."], adjAula: "Check-list visual de tareas en el pupitre.", adjCasa: "Recetas de cocina sencillas guiadas." }
+            ],
+            "Quinto": [
+                { proc: "Conciencia Fonológica y Léxica", items: ["Reconoce prefijos y sufijos.", "Comprende cambios de significado en derivadas.", "Identifica familias de palabras.", "Analiza la estructura de palabras complejas."], adjAula: "Crucigramas y mapas de familias léxicas.", adjCasa: "Creación de diccionarios propios interactivos." },
+                { proc: "Decodificación y Precisión", items: ["Lee palabras académicas propias del grado.", "Lee pseudopalabras complejas.", "Reconoce palabras correctamente escritas.", "Presenta pocas omisiones o sustituciones.", "Mantiene precisión y ritmo adecuado."], adjAula: "Lectura previa de términos técnicos (glosario visual).", adjCasa: "Identificar vocabulario nuevo en noticias breves." },
+                { proc: "Fluidez Lectora", items: ["Mantiene ritmo adecuado en la lectura.", "Respeta signos de puntuación.", "Utiliza entonación apropiada.", "Lee con continuidad fluida."], adjAula: "Lectura dramatizada, uso de marcadores de respiración.", adjCasa: "Lectura en voz alta compartida con adultos." },
+                { proc: "Comprensión Crítica", items: ["Identifica información explícita e implícita.", "Realiza inferencias y relaciona ideas.", "Argumenta opiniones con base en la lectura.", "Analiza situaciones planteadas."], adjAula: "Uso de esquemas previos y preguntas de pensamiento crítico.", adjCasa: "Debates familiares constructivos sobre historias." },
+                { proc: "Seguimiento de Instrucciones", items: ["Comprende instrucciones complejas.", "Sigue secuencias de varios pasos.", "Ejecuta correctamente las tareas.", "Trabaja con autonomía."], adjAula: "Desglosar tareas complejas, rúbricas de verificación.", adjCasa: "Proyectos en casa con guías estructuradas." }
             ]
         },
-        matematica: {
-            "2": [
-                { area: "SENTIDO NUMÉRICO Y VALOR POSICIONAL", items: ["Reconoce números hasta 100 o más.", "Comprende el valor posicional.", "Completa secuencias numéricas.", "Ordena números correctamente."], adjustment: { orientation: "Dificultad en la transición del pensamiento concreto al abstracto numérico. Confunde números o secuencias.", classroom: "Uso obligatorio de bloques Base 10 físicos, ábacos o material concreto antes de escribir la cifra.", home: "Contar y clasificar elementos reales del hogar. Utilizar monedas o billetes didácticos para jugar a la tienda." }},
-                { area: "PROCEDIMIENTOS Y CÁLCULO", items: ["Realiza sumas correctamente.", "Realiza restas correctamente.", "Sigue procedimientos matemáticos.", "Mantiene el orden en las operaciones."], adjustment: { orientation: "Falta de comprensión del significado real de la operación. Confunde signos y procesos básicos.", classroom: "Semáforo de signos: asignar color verde al más (+) indicando 'avanzar' y rojo al menos (-) indicando 'parar'. Operar con tapas.", home: "Operar sumas y restas usando ganchos de ropa, fichas u objetos tangibles en lugar de solo números en un papel." }},
-                { area: "MEMORIA DE TRABAJO MATEMÁTICA", items: ["Retiene información numérica.", "Mantiene la atención durante la tarea.", "Recuerda secuencias numéricas.", "Completa actividades sin olvidar pasos.", "Sigue instrucciones matemáticas."], adjustment: { orientation: "Sobrecarga en la memoria de trabajo; no logra mantener los pasos o las reglas en la mente para terminar.", classroom: "Segmentación de tareas y apoyos visuales permanentes con el paso a paso de la operación en el tablero.", home: "Juegos de secuencias de memoria cortos y repetición de instrucciones matemáticas en voz alta antes de hacerlas." }},
-                { area: "COMPRENSIÓN Y RESOLUCIÓN DE PROBLEMAS", items: ["Identifica datos importantes.", "Comprende la situación planteada.", "Selecciona la operación adecuada.", "Resuelve correctamente problemas sencillos.", "Explica o justifica su respuesta."], adjustment: { orientation: "No sabe qué operación realizar y recurre a adivinar. Falla en el razonamiento lógico-matemático.", classroom: "Dibujar la historia del problema y tachar físicamente con una 'X' lo que se quita antes de plasmarlo en números.", home: "Plantear retos matemáticos verbales y muy cotidianos (ej. 'Si tenemos 6 manzanas y nos comemos 2, ¿cuántas quedan?')." }},
-                { area: "VISOESPACIAL Y ORGANIZACIÓN", items: ["Alinea los números al sumar o restar.", "Acomoda las decenas con las decenas y unidades con unidades."], adjustment: { orientation: "Fallas en el procesamiento visoespacial. Acomoda mal los números alterando el resultado final.", classroom: "Cuadrículas ampliadas pautadas por color. Resaltador azul para unidades y rojo para decenas ('La casita de los números').", home: "Realizar ejercicios matemáticos en hojas cuadriculadas con los cuadros previamente resaltados por el adulto." }}
+        "Escritura": {
+            "Segundo": [
+                { proc: "Procesos Fonológicos", items: ["Escribe palabras relacionando sonidos y letras.", "Identifica letras faltantes en palabras.", "Escribe palabras dictadas correctamente.", "Presenta pocas omisiones o sustituciones."], adjAula: "Juego de palmadas y fichas para segmentar.", adjCasa: "Dictados guiados visuales (caja de arena)." },
+                { proc: "Procesos Morfosintácticos", items: ["Organiza palabras para formar oraciones.", "Completa oraciones coherentemente.", "Escribe oraciones con estructura adecuada.", "Utiliza vocabulario acorde a su edad."], adjAula: "Rompecabezas de oraciones manipulables.", adjCasa: "Expansión de frases a partir de imágenes." },
+                { proc: "Planificación Escrita", items: ["Organiza ideas de manera lógica.", "Mantiene secuencia temporal.", "Produce ideas relacionadas con el tema.", "Desarrolla mensajes completos."], adjAula: "Tira cómica estructurada en 3 pasos.", adjCasa: "Secuencias visuales temporales narradas." },
+                { proc: "Aspectos Motores y Grafomotores", items: ["Mantiene letra legible y tamaño uniforme.", "Respeta espacios entre palabras.", "Sigue el renglón adecuadamente.", "Presenta adecuada organización espacial."], adjAula: "Cuaderno ferrocarril o renglón resaltado amarillo.", adjCasa: "Uso del dedo espaciador físico." }
             ],
-            "3_4_5": [
-                { area: "SENTIDO NUMÉRICO Y VALOR POSICIONAL", items: ["Reconoce números hasta la unidad de mil.", "Comprende el valor posicional.", "Descompone números correctamente.", "Ordena números correctamente.", "Completa secuencias numéricas."], adjustment: { orientation: "Dificultades para asimilar abstracciones de alto nivel como números grandes, fracciones o decimales.", classroom: "Uso de tablas de valor posicional físicas. Uso de dinero didáctico para fracciones o decimales ('Caja registradora').", home: "Leer números grandes en recibos de servicios públicos del hogar o precios en folletos de supermercado." }},
-                { area: "PROCEDIMIENTOS Y CÁLCULO", items: ["Realiza sumas correctamente.", "Realiza restas correctamente.", "Resuelve multiplicaciones básicas.", "Utiliza estrategias de cálculo.", "Sigue procedimientos matemáticos."], adjustment: { orientation: "Sobrecarga de la memoria de trabajo debido a la retención de algoritmos secuenciales complejos (olvida las llevadas o tablas).", classroom: "Permitir consulta de la Tabla Pitagórica. 'Círculo rojo del llevo': Dibujar un círculo rojo arriba para anotar lo que lleva.", home: "Apoyar el aprendizaje de tablas mediante dinámicas lúdicas de lanzar una pelota, no repetición plana." }},
-                { area: "MEMORIA DE TRABAJO Y ORGANIZACIÓN", items: ["Retiene información numérica.", "Sigue instrucciones matemáticas.", "Recuerda secuencias numéricas.", "Completa actividades sin olvidar pasos.", "Mantiene organización visoespacial."], adjustment: { orientation: "Desalinea las cifras al realizar multiplicaciones de varias cifras o divisiones largas por déficit visoespacial.", classroom: "Vías del tren (Líneas divisorias): Trazar líneas verticales rectas con resaltador bajando por toda la hoja para separar columnas.", home: "Utilizar hojas con cuadrícula grande o milimetradas para hacer las tareas y guiar la escritura alineada." }},
-                { area: "COMPRENSIÓN Y RESOLUCIÓN DE PROBLEMAS", items: ["Identifica datos importantes.", "Comprende la situación planteada.", "Selecciona la operación adecuada.", "Resuelve correctamente problemas sencillos.", "Explica o justifica su respuesta."], adjustment: { orientation: "Déficit en funciones ejecutivas de planificación. Se pierde en problemas matemáticos de dos o más pasos.", classroom: "Cuadro estructurado de 3 pasos en plantilla: 1) Datos (Subraya en color), 2) Operación, 3) Respuesta escrita en oración.", home: "Involucrar activamente al estudiante en la planificación de recetas midiendo ingredientes o calculando vueltas al comprar." }}
+            "Tercero": [
+                { proc: "Procesos Fonológicos y Ortográficos", items: ["Escribe palabras relacionando sonidos.", "Identifica letras faltantes.", "Escribe palabras dictadas.", "Pocas omisiones o sustituciones."], adjAula: "Cajas de sonidos, llavero ortográfico.", adjCasa: "Tableros visuales con palabras de corrección." },
+                { proc: "Procesos Morfosintácticos", items: ["Organiza palabras para formar oraciones.", "Mantiene concordancia gramatical.", "Escribe oraciones con estructura adecuada.", "Utiliza vocabulario acorde."], adjAula: "Plantillas con conectores ('Había una vez...').", adjCasa: "Completar historias inconclusas orales." },
+                { proc: "Planificación Escrita", items: ["Organiza ideas de manera lógica.", "Mantiene secuencia temporal.", "Desarrolla una idea principal.", "Produce textos breves comprensibles."], adjAula: "Mapa mental 'Esqueleto de pescado'.", adjCasa: "Narración estructurada oral antes de escribir." },
+                { proc: "Aspectos Motores", items: ["Mantiene letra legible.", "Conserva tamaño uniforme.", "Respeta espacios entre palabras.", "Sigue el renglón adecuadamente.", "Presenta organización espacial."], adjAula: "Márgenes visuales rojos restrictivos.", adjCasa: "Pautas visuales claras en escritorios limpios." }
+            ],
+            "Cuarto": [ 
+                { proc: "Procesos Fonológicos y Ortográficos", items: ["Escribe palabras relacionando sonidos.", "Identifica letras faltantes.", "Escribe palabras dictadas.", "Pocas omisiones o sustituciones."], adjAula: "Cajas de sonidos, llavero ortográfico.", adjCasa: "Tableros visuales con palabras de corrección." },
+                { proc: "Procesos Morfosintácticos", items: ["Organiza palabras para formar oraciones.", "Mantiene concordancia gramatical.", "Escribe oraciones con estructura adecuada.", "Utiliza vocabulario acorde."], adjAula: "Plantillas con conectores ('Había una vez...').", adjCasa: "Completar historias inconclusas orales." },
+                { proc: "Planificación Escrita", items: ["Organiza ideas de manera lógica.", "Mantiene secuencia temporal.", "Desarrolla una idea principal.", "Produce textos breves comprensibles."], adjAula: "Mapa mental 'Esqueleto de pescado'.", adjCasa: "Narración estructurada oral antes de escribir." },
+                { proc: "Aspectos Motores", items: ["Mantiene letra legible.", "Conserva tamaño uniforme.", "Respeta espacios entre palabras.", "Sigue el renglón adecuadamente.", "Presenta organización espacial."], adjAula: "Márgenes visuales rojos restrictivos.", adjCasa: "Pautas visuales claras en escritorios limpios." }
+            ],
+            "Quinto": [ 
+                { proc: "Procesos Fonológicos y Ortográficos", items: ["Escribe palabras relacionando sonidos.", "Identifica letras faltantes.", "Escribe palabras dictadas.", "Pocas omisiones o sustituciones."], adjAula: "Cajas de sonidos, llavero ortográfico.", adjCasa: "Tableros visuales con palabras de corrección." },
+                { proc: "Procesos Morfosintácticos", items: ["Organiza palabras para formar oraciones.", "Mantiene concordancia gramatical.", "Escribe oraciones con estructura adecuada.", "Utiliza vocabulario acorde."], adjAula: "Plantillas con conectores ('Había una vez...').", adjCasa: "Completar historias inconclusas orales." },
+                { proc: "Planificación Escrita", items: ["Organiza ideas de manera lógica.", "Mantiene secuencia temporal.", "Desarrolla una idea principal.", "Produce textos breves comprensibles."], adjAula: "Mapa mental 'Esqueleto de pescado'.", adjCasa: "Narración estructurada oral antes de escribir." },
+                { proc: "Aspectos Motores", items: ["Mantiene letra legible.", "Conserva tamaño uniforme.", "Respeta espacios entre palabras.", "Sigue el renglón adecuadamente.", "Presenta organización espacial."], adjAula: "Márgenes visuales rojos restrictivos.", adjCasa: "Pautas visuales claras en escritorios limpios." }
             ]
         },
-        comportamiento: {
-            "prejardin_jardin": [
-                { area: "AUTORREGULACIÓN Y CONTROL DE IMPULSOS", items: ["Hace berrinches prolongados.", "Arrebata juguetes.", "Le cuesta esperar su turno o calmarse."], adjustment: { orientation: "Respuestas asociadas a inmadurez en control inhibitorio prefrontal y limitaciones en el lenguaje expresivo.", classroom: "Crear 'La Caja de la Calma' con botellas sensoriales y cojines. Acompañar al niño y modelar la respiración ('inflar un globo').", home: "Enseñar técnicas de respiración profunda antes de que estalle. Evitar respuestas punitivas severas ante desbordes." }},
-                { area: "INTERACCIÓN SOCIAL", items: ["Agresividad física (muerde, empuja).", "Se aísla.", "Le cuesta compartir el espacio con otros."], adjustment: { orientation: "Dificultad para comunicar la frustración verbalmente. El cuerpo actúa antes que el lenguaje explicativo.", classroom: "Títeres Mediadores: Usar títeres para representar el conflicto de aula y guiarlo para buscar alternativas verbales ('El oso dice dame').", home: "Nombrar consistentemente las emociones del niño ('Pareces muy frustrado porque no te salió el dibujo')." }},
-                { area: "ADAPTACIÓN A RUTINAS", items: ["Llora en transiciones (ej. del parque al salón).", "No sigue instrucciones de un solo paso.", "Muestra rigidez ante cambios."], adjustment: { orientation: "Alta necesidad de predictibilidad y dificultad en la flexibilidad cognitiva ante cambios súbitos.", classroom: "Anticipar todo cambio mediante horarios visuales (pictogramas) y Canciones fijas de Transición para avisar el fin de una actividad.", home: "Mantener rutinas estructuradas y anticipar los eventos del día mediante dibujos pegados en la nevera o su cuarto." }}
+        "Matematicas": {
+            "Segundo": [
+                { proc: "Sentido Numérico y Valor Posicional", items: ["Reconoce números hasta 100 o más.", "Comprende el valor posicional.", "Completa secuencias numéricas.", "Ordena números correctamente."], adjAula: "Uso de bloques base diez, ábacos manipulativos.", adjCasa: "Agrupar material concreto para comprender decenas." },
+                { proc: "Procedimientos y Cálculo", items: ["Realiza sumas correctamente.", "Realiza restas correctamente.", "Sigue procedimientos matemáticos.", "Mantiene el orden en las operaciones."], adjAula: "Semáforo de signos (+ verde, - rojo), tapas de conteo.", adjCasa: "Operar usando objetos tangibles en vez de lápiz." },
+                { proc: "Memoria de Trabajo Matemática", items: ["Retiene información numérica.", "Mantiene la atención durante la tarea.", "Recuerda secuencias numéricas.", "Completa actividades sin olvidar pasos.", "Sigue instrucciones matemáticas."], adjAula: "Repetición guiada, segmentación de algoritmos.", adjCasa: "Estudio en bloques cortos, agendas de pasos." },
+                { proc: "Comprensión y Resolución de Problemas", items: ["Identifica datos importantes.", "Comprende la situación planteada.", "Selecciona la operación adecuada.", "Resuelve problemas sencillos.", "Explica o justifica su respuesta."], adjAula: "Dibujar la historia del problema, identificar palabras clave.", adjCasa: "Plantear retos cotidianos sencillos verbales." }
             ],
-            "transicion_1_2": [
-                { area: "AUTORREGULACIÓN CONDUCTUAL", items: ["Se levanta del puesto constantemente.", "Interrumpe al docente o a compañeros.", "Reacciona con llanto ante correcciones."], adjustment: { orientation: "La demanda de permanencia excede su control atencional, revelando necesidad de regulación sensorial o hiperactividad motora.", classroom: "Termómetro Emocional de mesa. Cuando siente que va a explotar o necesita moverse, mueve un clip al rojo y toma una breve pausa activa.", home: "Fomentar el juego no estructurado y físico para descargar energía antes de exigir concentración en tareas." }},
-                { area: "HABILIDADES SOCIALES", items: ["Frecuentes conflictos en el recreo.", "No acepta perder en los juegos.", "Le cuesta pedir perdón."], adjustment: { orientation: "Dificultad para internalizar reglas sociales, baja tolerancia a la frustración e inmadurez en empatía.", classroom: "Ensayo de Respuestas o Role-playing: Practicar qué frases usar si pierde antes de salir al recreo ('Buen juego, la próxima gano').", home: "Jugar juegos de mesa en familia exclusivamente para enseñarle a tolerar la pérdida progresivamente." }},
-                { area: "SEGUIMIENTO DE INSTRUCCIONES", items: ["No termina los trabajos por hablar.", "Olvida los pasos a seguir.", "Requiere recordatorios constantes."], adjustment: { orientation: "Fallas significativas en la memoria de trabajo verbal y la atención sostenida para culminar ciclos de trabajo.", classroom: "Mini Check-list visual en post-it (dibujar los 3 pasos a seguir). El estudiante tacha cada paso al finalizarlo.", home: "Dividir las instrucciones largas del hogar en pasos cortos, entregando un comando a la vez." }}
+            "Tercero": [
+                { proc: "Sentido Numérico y Valor Posicional", items: ["Reconoce números hasta la unidad de mil.", "Comprende el valor posicional.", "Descompone números correctamente.", "Ordena números y completa secuencias."], adjAula: "Caja registradora (dinero didáctico), material base diez.", adjCasa: "Visualizar billetes reales para comprender valores." },
+                { proc: "Procedimientos y Cálculo", items: ["Realiza sumas y restas correctamente.", "Resuelve multiplicaciones básicas.", "Utiliza estrategias de cálculo.", "Sigue procedimientos matemáticos."], adjAula: "Círculo rojo del 'Llevo', tabla pitagórica en pupitre.", adjCasa: "Juegos con pelota para mecanizar tablas." },
+                { proc: "Memoria de Trabajo", items: ["Retiene información numérica.", "Sigue instrucciones matemáticas.", "Recuerda secuencias numéricas.", "Completa actividades sin olvidar pasos."], adjAula: "Guías visuales de algoritmos largos paso a paso.", adjCasa: "Organización de pautas matemáticas claras." },
+                { proc: "Comprensión y Resolución de Problemas", items: ["Identifica datos importantes.", "Comprende la situación planteada.", "Selecciona la operación adecuada.", "Resuelve problemas correctamente.", "Explica o justifica su respuesta."], adjAula: "Estrategia CUBES, cuadro estructurado de 3 pasos.", adjCasa: "Lectura guiada y subrayado de colores en casa." }
             ],
-            "3_4_5": [
-                { area: "AUTORREGULACIÓN Y FUNCIONES EJECUTIVAS", items: ["Reacciones verbales impulsivas (contesta mal).", "Desorganización extrema en sus materiales.", "Posterga tareas y se rinde rápido."], adjustment: { orientation: "Manifestaciones conductuales ligadas a inmadurez en funciones ejecutivas (planificación, iniciación de tarea) o reactividad emocional.", classroom: "Diario de descargo (Brain Dump): Permitir 3 min libres para escribir o rayar una libreta antes de iniciar la clase si viene muy alterado.", home: "Asignar horarios estructurados cortos (ej. regla de los 15 minutos de tarea x 5 min de descanso total)." }},
-                { area: "RELACIONES INTERPERSONALES", items: ["Promueve o sufre exclusión de grupos.", "Mantiene conflictos verbales prolongados.", "Le cuesta ver la perspectiva del otro."], adjustment: { orientation: "Desarrollo social en preadolescencia obstaculizado por falta de empatía cognitiva y baja asertividad comunicativa.", classroom: "Fórmula 'Mensajes Yo': Exigir en conflictos el uso estricto de: 'Yo me siento [emoción] cuando tú [acción] porque [razón]'.", home: "Separar el valor personal del estudiante de su comportamiento ocasional al corregirlo (corregir el acto, no la identidad)." }},
-                { area: "RESPONSABILIDAD Y SEGUIMIENTO DE NORMAS", items: ["Desafía normas de forma sutil.", "Olvida materiales a diario.", "Culpa a otros y no asume consecuencias."], adjustment: { orientation: "Necesidad de autoafirmación mal encauzada, evitación de responsabilidades por miedo al fracaso o reglas difusas.", classroom: "Contrato de Comportamiento Co-creado: Redactar a solas con él las consecuencias lógicas (no punitivas) y firmarlo ambos.", home: "Involucrar al estudiante en la búsqueda de soluciones a sus errores en lugar de imponer castigos arbitrarios." }}
+            "Cuarto": [ 
+                { proc: "Sentido Numérico y Valor Posicional", items: ["Reconoce números hasta la unidad de mil.", "Comprende el valor posicional.", "Descompone números correctamente.", "Ordena números y completa secuencias."], adjAula: "Caja registradora (dinero didáctico), material base diez.", adjCasa: "Visualizar billetes reales para comprender valores." },
+                { proc: "Procedimientos y Cálculo", items: ["Realiza sumas y restas correctamente.", "Resuelve multiplicaciones básicas.", "Utiliza estrategias de cálculo.", "Sigue procedimientos matemáticos."], adjAula: "Círculo rojo del 'Llevo', tabla pitagórica en pupitre.", adjCasa: "Juegos con pelota para mecanizar tablas." },
+                { proc: "Memoria de Trabajo", items: ["Retiene información numérica.", "Sigue instrucciones matemáticas.", "Recuerda secuencias numéricas.", "Completa actividades sin olvidar pasos."], adjAula: "Guías visuales de algoritmos largos paso a paso.", adjCasa: "Organización de pautas matemáticas claras." },
+                { proc: "Comprensión y Resolución de Problemas", items: ["Identifica datos importantes.", "Comprende la situación planteada.", "Selecciona la operación adecuada.", "Resuelve problemas correctamente.", "Explica o justifica su respuesta."], adjAula: "Estrategia CUBES, cuadro estructurado de 3 pasos.", adjCasa: "Lectura guiada y subrayado de colores en casa." }
+            ],
+            "Quinto": [ 
+                { proc: "Sentido Numérico y Valor Posicional", items: ["Reconoce números hasta la unidad de mil.", "Comprende el valor posicional.", "Descompone números correctamente.", "Ordena números y completa secuencias."], adjAula: "Caja registradora (dinero didáctico), material base diez.", adjCasa: "Visualizar billetes reales para comprender valores." },
+                { proc: "Procedimientos y Cálculo", items: ["Realiza sumas y restas correctamente.", "Resuelve multiplicaciones básicas.", "Utiliza estrategias de cálculo.", "Sigue procedimientos matemáticos."], adjAula: "Círculo rojo del 'Llevo', tabla pitagórica en pupitre.", adjCasa: "Juegos con pelota para mecanizar tablas." },
+                { proc: "Memoria de Trabajo", items: ["Retiene información numérica.", "Sigue instrucciones matemáticas.", "Recuerda secuencias numéricas.", "Completa actividades sin olvidar pasos."], adjAula: "Guías visuales de algoritmos largos paso a paso.", adjCasa: "Organización de pautas matemáticas claras." },
+                { proc: "Comprensión y Resolución de Problemas", items: ["Identifica datos importantes.", "Comprende la situación planteada.", "Selecciona la operación adecuada.", "Resuelve problemas correctamente.", "Explica o justifica su respuesta."], adjAula: "Estrategia CUBES, cuadro estructurado de 3 pasos.", adjCasa: "Lectura guiada y subrayado de colores en casa." }
             ]
         }
     };
 
-    // Estrategias DUA Generales por Área
-    const estrategiasDUA = {
-        lectura: [
-            "Proporcionar audiolibros o software de texto a voz (Múltiples formas de representación).",
-            "Uso de tipografías accesibles y espaciado amplio en las guías de lectura.",
-            "Ofrecer resúmenes visuales o mapas mentales ANTES de abordar el texto completo.",
-            "Permitir al estudiante demostrar su comprensión mediante dibujos o grabaciones de voz.",
-            "Fomentar la lectura en parejas (tutoría entre pares) para reducir la ansiedad.",
-            "Incorporar juegos de palabras, rimas y manipulación de sonidos con movimiento físico.",
-            "Usar marcadores de colores o ventanas de lectura de cartón para evitar saltos de renglón.",
-            "Dividir los textos largos en fragmentos cortos, realizando pausas de comprobación.",
-            "Conectar siempre las lecturas con los intereses personales del grupo (Implicación).",
-            "Asegurar ambientes de lectura cómodos y libres de distracciones visuales excesivas."
-        ],
-        escritura: [
-            "Permitir el uso de procesadores de texto o dictado por voz para tareas muy largas.",
-            "Entregar organizadores gráficos previos (plantillas visuales) antes de redactar.",
-            "Proveer bancos de palabras o 'llaveros ortográficos' personalizados en el pupitre.",
-            "Uso de pautas visuales resaltadas (ej. margen rojo grueso o renglón amarillo).",
-            "Aceptar formatos alternativos (infografías, cómics) en lugar de solo ensayos tradicionales.",
-            "Uso de lápices con adaptadores ergonómicos para reducir la fatiga muscular.",
-            "Fomentar la planificación oral de la historia antes de escribirla en el papel.",
-            "Segmentar las tareas de escritura en pasos distintos: 1. Idea, 2. Borrador, 3. Edición.",
-            "Ofrecer retroalimentación enfocada en la creatividad y contenido, no solo en la ortografía.",
-            "Implementar estaciones de escritura con diferentes materiales (pizarras, arena, marcadores)."
-        ],
-        matematica: [
-            "Uso permanente de material concreto y manipulable (bloques base 10, ábacos, fichas).",
-            "Representación visual obligatoria de los problemas matemáticos (dibujar el problema).",
-            "Permitir el uso de Tablas Pitagóricas de consulta libre para operaciones largas.",
-            "Uso de códigos de colores estandarizados para diferenciar signos (+ verde, - rojo).",
-            "Conectar los problemas matemáticos con situaciones reales (compras, recetas, juegos).",
-            "Instrucciones segmentadas y plantillas paso a paso (Datos, Operación, Respuesta).",
-            "Fomentar la resolución de problemas de forma colaborativa o en pequeños grupos.",
-            "Reducir la cantidad de ejercicios por página para evitar la sobrecarga visual y cognitiva.",
-            "Pedir al estudiante que verbalice su proceso ('cuéntame cómo lo resolviste').",
-            "Uso de juegos de mesa (monopolio, dados) para automatizar el cálculo mental sin presión."
-        ],
-        comportamiento: [
-            "Uso de agendas visuales (pictogramas) y anticipación constante de todas las rutinas.",
-            "Implementar pausas activas o descansos con propósito motor (ej. repartir el material).",
-            "Creación de una 'Zona de la Calma' accesible y no punitiva dentro del aula.",
-            "Dar opciones de elección en las actividades para fomentar la autonomía (Múltiples formas de implicación).",
-            "Instrucciones claras, cortas y preferiblemente acompañadas de gestos o apoyos visuales.",
-            "Segmentación de las tareas largas en micro-metas para mantener la motivación alta.",
-            "Refuerzo positivo inmediato y descriptivo (elogiar el esfuerzo, no solo el resultado).",
-            "Uso de herramientas de autorregulación individual (termómetro de emociones de mesa).",
-            "Minimizar distracciones sensoriales innecesarias (ruidos fuertes, exceso de carteles).",
-            "Asignar roles de liderazgo y responsabilidades reales para canalizar la energía de forma positiva."
-        ]
+    // ESTRATEGIAS AUTOMÁTICAS PARA BARRERAS 1421
+    const estrategiasBarreras = {
+        "Existen bajas expectativas frente a las capacidades del estudiante.": "Establecer metas alcanzables y progresivas, reconociendo públicamente sus avances, capacidades y logros.",
+        "El estudiante es etiquetado por su diagnóstico, condición o dificultad.": "Utilizar lenguaje inclusivo centrado en la persona, evitando definir al estudiante por su diagnóstico.",
+        "Existe rechazo, discriminación, burlas o aislamiento por parte de sus compañeros.": "Implementar actividades de sensibilización, empatía, reconocimiento de la diversidad y aprendizaje cooperativo.",
+        "Se presenta sobreprotección que limita su autonomía.": "Asignar responsabilidades acordes con sus capacidades y disminuir gradualmente los apoyos innecesarios.",
+        "Se utiliza una única metodología de enseñanza para todos los estudiantes.": "Implementar DUA: presentar la información de múltiples formas (oral, visual, experiencial, material concreto).",
+        "Las instrucciones son extensas, complejas o poco claras.": "Dar una instrucción a la vez, utilizar lenguaje sencillo, fragmentar tareas y verificar la comprensión.",
+        "Predominan las actividades de copia, memorización o repetición.": "Incorporar actividades prácticas, lúdicas, experienciales y relacionadas con situaciones cotidianas.",
+        "No se utilizan apoyos visuales o material concreto.": "Incorporar sistemáticamente pictogramas, imágenes, organizadores gráficos, ejemplos visuales y objetos manipulables.",
+        "Los objetivos de aprendizaje son rígidos y no consideran las características del estudiante.": "Priorizar los aprendizajes esenciales y establecer metas graduales, observables y alcanzables.",
+        "No se flexibilizan los tiempos para desarrollar las actividades o evaluaciones.": "Ampliar el tiempo, permitir la entrega de actividades por etapas o reducir la cantidad de preguntas conservando lo esencial.",
+        "La evaluación se realiza únicamente mediante pruebas escritas.": "Permitir diferentes formas de respuesta: oral, gráfica, práctica, audiovisual o mediante material concreto.",
+        "Se evalúa principalmente el resultado y no el proceso.": "Utilizar rúbricas que valoren avances, esfuerzo, participación, estrategias y nivel de apoyo requerido.",
+        "El estudiante presenta dificultad para comprender instrucciones orales.": "Acompañar las instrucciones orales sistemáticamente con imágenes, gestos, ejemplos o demostraciones físicas.",
+        "Los textos utilizados son extensos o presentan lenguaje complejo.": "Adaptar los textos mediante lectura fácil, uso de frases cortas, palabras clave, resaltadores e imágenes asociadas.",
+        "Existe exceso de ruido, estímulos visuales o distractores.": "Organizar un espacio con menor carga sensorial, ubicar estratégicamente al estudiante y establecer pausas de regulación.",
+        "Los recursos digitales no son accesibles o hay dificultad tecnológica.": "Enseñar funciones tecnológicas mediante demostración guiada, paso a paso, y ofrecer formatos alternativos de trabajo.",
+        "Existe poca articulación entre docentes y profesionales de apoyo.": "Establecer reuniones periódicas formales con acuerdos, delegación de responsables y fechas de seguimiento en aula.",
+        "Existe poca comunicación entre la familia y la institución educativa.": "Establecer un canal de comunicación asertivo en agenda, centrado en avances y no solo en quejas conductuales.",
+        "Existen dificultades económicas para acceder a materiales, transporte o conectividad.": "Ofrecer alternativas lúdicas que no generen costos adicionales y gestionar redes de apoyo interno."
     };
 
-    let mappedData = [];
+    let areasSeleccionadas = [];
 
-    function updateChecklist() {
-        const grado = document.getElementById("grado").value;
-        const area = document.getElementById("area").value;
-        const container = document.getElementById("checklist-container");
-        const listContainer = document.getElementById("checklist-items");
-        const fab = document.getElementById("fab-generate");
-        
-        mappedData = []; 
+    // GESTIÓN DINÁMICA Y ESTRICTA DE LISTAS SEGÚN GRADO Y ÁREA
+    function renderChecklists() {
+        const cbs = document.querySelectorAll('.area-selector:checked');
+        const grado = document.getElementById("cp_grado").value;
+        const container = document.getElementById("checklists-container");
+        container.innerHTML = "";
+        areasSeleccionadas = [];
 
-        if (!grado || !area) {
-            container.classList.add("hidden");
-            fab.classList.add("hidden");
+        if(!grado) {
+            container.innerHTML = "<p style='color:#c65911; background:#fff2cc; padding:10px; border-radius:8px;'>⚠️ Seleccione primero el Grado del estudiante en la sección 1 para cargar los procesos correctos.</p>";
             return;
         }
 
-        let key = grado;
-        if (area === 'lectura') {
-            if (grado === 'prejardin' || grado === 'transicion') { showWarning(listContainer, container, fab); return; }
-            else if (grado === '3' || grado === '4') key = "3_4";
-            else if (grado === '5') key = "5";
-        } else if (area === 'escritura' || area === 'matematica') {
-            if (grado === 'prejardin' || grado === 'transicion') { showWarning(listContainer, container, fab); return; }
-            else if (grado === '3' || grado === '4' || grado === '5') key = "3_4_5";
-        } else if (area === 'comportamiento') {
-            if (grado === 'prejardin') key = "prejardin_jardin";
-            else if (grado === 'transicion' || grado === '2') key = "transicion_1_2";
-            else key = "3_4_5";
-        }
+        Array.from(cbs).forEach((cb, areaIdx) => {
+            const area = cb.value;
+            areasSeleccionadas.push(area);
 
-        const dataSections = database[area][key];
-        listContainer.innerHTML = "";
-        
-        dataSections.forEach((section, sectionIdx) => {
-            const sectionDiv = document.createElement("div");
-            sectionDiv.className = "area-section";
-            
-            const title = document.createElement("div");
-            title.className = "area-title";
-            title.innerText = section.area;
-            sectionDiv.appendChild(title);
+            const areaWrap = document.createElement("div");
+            areaWrap.className = "area-wrapper";
+            areaWrap.innerHTML = `<div class="area-main-title">${area}</div>`;
 
-            mappedData.push({
-                sectionTitle: section.area,
-                itemsData: [],
-                adjustment: section.adjustment
-            });
+            // CONDICIÓN REQUERIDA: Preescolar y Primero solo aplican Comportamiento
+            if ((area === 'Lectura' || area === 'Escritura' || area === 'Matematicas') && (grado === 'Preescolar' || grado === 'Primero')) {
+                areaWrap.innerHTML += `<div style='padding:15px; color:#c65911; background:#fff2cc; text-align:justify; line-height:1.5;'>⚠️ <strong>Restricción de Instrumento:</strong> La caracterización estandarizada y el llenado de matrices de procesos para <em>${area}</em> inician exclusivamente a partir de Grado Segundo.<br><br>Para los grados iniciales (Pre-Jardín, Jardín, Transición y Primero), le invitamos a perfilar al estudiante seleccionando únicamente el área de <strong>"Comportamiento"</strong>, la cual evalúa habilidades pre-requisitas vitales (autorregulación, seguimiento de rutinas y motricidad adaptativa).</div>`;
+                container.appendChild(areaWrap);
+                return; 
+            }
 
-            section.items.forEach((itemText, itemIdx) => {
-                const inputName = `grp_${sectionIdx}_${itemIdx}`;
+            const procList = dbProcesos[area][grado];
+            if(!procList) {
+                areaWrap.innerHTML += `<div style='padding:15px; color:#c65911; background:#fff2cc;'>⚠️ Datos no configurados para ${area} en grado ${grado}.</div>`;
+                container.appendChild(areaWrap);
+                return;
+            }
+
+            procList.forEach((proc, procIdx) => {
+                const sec = document.createElement("div");
+                sec.className = "area-section";
+                sec.innerHTML = `<div class="area-title">${proc.proc}</div>`;
                 
-                mappedData[sectionIdx].itemsData.push({
-                    name: inputName,
-                    text: itemText
+                proc.items.forEach((itemText, itemIdx) => {
+                    const inputName = `eval_${areaIdx}_${procIdx}_${itemIdx}`;
+                    sec.innerHTML += `
+                        <div class="check-item">
+                            <p>🔹 ${itemText}</p>
+                            <div class="options-group">
+                                <input type="radio" name="${inputName}" id="${inputName}_3" value="3" required>
+                                <label class="option-label" for="${inputName}_3">🟢 Adecuado</label>
+                                <input type="radio" name="${inputName}" id="${inputName}_2" value="2">
+                                <label class="option-label" for="${inputName}_2">🟡 En Proceso</label>
+                                <input type="radio" name="${inputName}" id="${inputName}_1" value="1">
+                                <label class="option-label" for="${inputName}_1">🔴 Dificultad</label>
+                            </div>
+                        </div>
+                    `;
                 });
-
-                const div = document.createElement("div");
-                div.className = "check-item";
-                div.innerHTML = `
-                    <p>🔹 ${itemText}</p>
-                    <div class="options-group">
-                        <input type="radio" name="${inputName}" id="${inputName}_3" value="3" required>
-                        <label class="option-label" for="${inputName}_3">🟢 Adecuado</label>
-                        
-                        <input type="radio" name="${inputName}" id="${inputName}_2" value="2">
-                        <label class="option-label" for="${inputName}_2">🟡 En Proceso</label>
-                        
-                        <input type="radio" name="${inputName}" id="${inputName}_1" value="1">
-                        <label class="option-label" for="${inputName}_1">🔴 Dificultad</label>
-                    </div>
-                `;
-                sectionDiv.appendChild(div);
+                areaWrap.appendChild(sec);
             });
-            listContainer.appendChild(sectionDiv);
+            container.appendChild(areaWrap);
         });
-
-        container.classList.remove("hidden");
-        fab.classList.remove("hidden");
     }
 
-    function showWarning(listContainer, container, fab) {
-        listContainer.innerHTML = "<div style='text-align:center; padding:20px; background:white; border-radius:15px; color:#ff8fab;'><strong>⚠️ Las listas académicas inician formalmente en grado 2º. Para grados iniciales selecciona la evaluación de 'Comportamiento'.</strong></div>";
-        container.classList.remove("hidden");
-        fab.classList.add("hidden");
-    }
+    function getCbValues(name) { return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value); }
+    function getRadioValue(name) { const rad = document.querySelector(`input[name="${name}"]:checked`); return rad ? rad.value : ""; }
 
-    function generateReport() {
-        const form = document.getElementById("eval-form");
-        if (!form.checkValidity()) {
-            alert("✨ Faltan datos: Por favor, evalúa TODOS los indicadores marcando una opción por cada fila.");
-            return;
+    // GENERAR REPORTE
+    function generarInformeIntegral() {
+        if (!document.getElementById("unified-form").checkValidity()) {
+            alert("⚠️ Faltan campos requeridos. Asegúrese de llenar todos los datos de texto, el grado y calificar las listas de chequeo desplegadas antes de generar el informe."); return;
         }
 
-        const docente = document.getElementById("docente").value || "Docente / Orientador";
-        const estudiante = document.getElementById("estudiante").value || "Estudiante";
-        const areaSelect = document.getElementById("area");
-        const areaTexto = areaSelect.options[areaSelect.selectedIndex].text;
-        const areaValue = areaSelect.value;
-        const gradoTexto = document.getElementById("grado").options[document.getElementById("grado").selectedIndex].text;
+        const nombre = document.getElementById("cp_nombre").value;
+        const grado = document.getElementById("cp_grado").value;
+        const gradoTxt = document.getElementById("cp_grado").options[document.getElementById("cp_grado").selectedIndex].text;
 
-        document.getElementById("rep-estudiante").innerText = `Estudiante: ${estudiante}`;
-        document.getElementById("rep-detalles").innerText = `Grado: ${gradoTexto} | Área Evaluada: ${areaTexto}\nEvaluador(a): ${docente}`;
+        document.getElementById("out_fecha").innerText = new Date().toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById("out_nombre").innerText = nombre;
+        document.getElementById("out_edad").innerText = document.getElementById("cp_edad").value + " años";
+        document.getElementById("out_grado").innerText = gradoTxt;
+        document.getElementById("out_diagnostico").innerText = document.getElementById("cp_diagnostico").value;
         
-        const tbody = document.getElementById("results-table-body");
-        tbody.innerHTML = "";
+        document.getElementById("out_docente_val").innerText = document.getElementById("cp_docente").value;
+        document.getElementById("out_area_val").innerText = document.getElementById("cp_area_docente").value;
+        document.getElementById("firma_docente_nombre").innerText = document.getElementById("cp_docente").value;
+        document.getElementById("firma_docente_area").innerText = document.getElementById("cp_area_docente").value;
+        document.getElementById("firma_orientadora_nombre").innerText = document.getElementById("cp_orientadora").value;
 
-        let totalDificultadesCriticas = 0;
-        let totalEnProceso = 0;
-        let hasAdjustments = false;
+        // Redacción Descriptiva
+        const impl = getCbValues("dua_impl").join(", ") || "metodologías estandarizadas";
+        const rep = getCbValues("dua_rep").join(" y ") || "los canales de enseñanza convencional";
+        const exp = getCbValues("dua_exp").join(", ") || "métodos de evaluación tradicionales";
+        const pares = getCbValues("soc_pares").join(" y ") || "manera intermitente";
+        const norma = getRadioValue("cp_norma") || "Se requiere mayor observación frente a las normas.";
+        const fam = getCbValues("soc_fam").join(", ") || "niveles que requieren fortalecimiento institucional";
 
-        mappedData.forEach(section => {
-            let count1 = 0; // Dificultad
-            let count2 = 0; // En Proceso
-            let itemsHtml = ""; // Lista de ítems específicos
+        const conceptoHTML = `
+            <strong>Perfil de Aprendizaje (Principios DUA):</strong><br>
+            A partir del análisis pedagógico, se establece que el/la estudiante <strong>${nombre}</strong> evidencia una mejor respuesta cognitiva y de adherencia a la tarea escolar cuando se involucran herramientas que despiertan su motivación; específicamente, en el aula se observa que <em>${impl}</em>. Al momento de procesar la información y adquirir nuevos conceptos, los canales de percepción más efectivos para su asimilación incluyen <em>${rep}</em>. En consecuencia, para verificar el grado de competencia adquirida, el estudiante demuestra un nivel superior de participación cuando sus medios de expresión permiten <em>${exp}</em>.<br><br>
+            <strong>Desarrollo Socioemocional, Convivencia y Dinámica Vincular:</strong><br>
+            A nivel socioafectivo y en el marco de sus relaciones interpersonales dentro de la comunidad, se identifica que en su interacción con los pares <em>${pares}</em>. En cuanto a la autorregulación y el seguimiento de instrucciones, la observación docente indica lo siguiente: <strong>${norma}</strong> Complementario a esto, al evaluar la red de apoyo del estudiante, se evidencia que el acompañamiento y corresponsabilidad familiar se caracteriza por <em>${fam}</em>.
+        `;
+        document.getElementById("out_concepto_redactado").innerHTML = conceptoHTML;
 
-            section.itemsData.forEach(item => {
-                const val = document.querySelector(`input[name="${item.name}"]:checked`).value;
-                if (val === "1") {
-                    count1++;
-                    itemsHtml += `<li class="li-dificultad"><strong>[Dificultad]</strong> ${item.text}</li>`;
-                }
-                else if (val === "2") {
-                    count2++;
-                    itemsHtml += `<li class="li-proceso"><strong>[En Proceso]</strong> ${item.text}</li>`;
-                }
+        // Barreras 1421
+        const barrerasSel = Array.from(document.querySelectorAll('.barrera-cb:checked')).map(cb => cb.value);
+        const bTable = document.getElementById("out_barreras_table");
+        bTable.innerHTML = "";
+        if(barrerasSel.length === 0) {
+            bTable.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#555;">No se identificaron barreras limitantes en el entorno al momento de la evaluación.</td></tr>`;
+        } else {
+            barrerasSel.forEach(b => {
+                bTable.innerHTML += `<tr><td><strong>${b}</strong></td><td style="background-color: #f9f9f9;">${estrategiasBarreras[b] || "Aplicar principios de flexibilización transversal."}</td></tr>`;
             });
-
-            let estadoProceso = "";
-            let badgeClass = "";
-            
-            if (count1 > 0) {
-                estadoProceso = "Dificultad Significativa";
-                badgeClass = "badge-dificultad";
-                totalDificultadesCriticas++;
-            } else if (count2 > 0) {
-                estadoProceso = "En Proceso";
-                badgeClass = "badge-proceso";
-                totalEnProceso++;
-            }
-
-            // Solo imprimir en tabla si hay ítems identificados con barreras (1 o 2)
-            if (count1 > 0 || count2 > 0) {
-                hasAdjustments = true;
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td>
-                        <strong style="color: #0077b6; font-size: 1.1em;">${section.sectionTitle}</strong><br>
-                        <span class="badge ${badgeClass}">${estadoProceso}</span>
-                        <ul class="item-list">${itemsHtml}</ul>
-                    </td>
-                    <td>${section.adjustment.orientation}</td>
-                    <td style="background-color: #f2f7fa;">${section.adjustment.classroom}</td>
-                    <td style="background-color: #fffafb;">${section.adjustment.home}</td>
-                `;
-                tbody.appendChild(tr);
-            }
-        });
-
-        // Caso excepcional: Todo está adecuado
-        if (!hasAdjustments) {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td colspan="4" style="text-align:center; padding:30px; font-size:1.1em; color:#385723; background-color:#e2f0d9; border-radius:10px;">
-                    <strong>✨ ¡Excelente desempeño! ✨</strong><br>
-                    Todos los procesos evaluados se encuentran en un nivel adecuado. No se requieren ajustes metodológicos.
-                </td>
-            `;
-            tbody.appendChild(tr);
         }
 
-        // LÓGICA DEL CONCEPTO PEDAGÓGICO FINAL
+        // Matriz de Áreas Académicas
+        const matrizContainer = document.getElementById("out_matrices_areas");
+        matrizContainer.innerHTML = "";
+        let totalDif = 0; let totalProc = 0; let evaluacionesReales = false;
+
+        if (areasSeleccionadas.length === 0) {
+            matrizContainer.innerHTML = `<p style="color:#c65911; background:#fff2cc; padding:10px;">No se seleccionaron áreas específicas de evaluación de procesos para este informe.</p>`;
+        } else {
+            areasSeleccionadas.forEach((area, areaIdx) => {
+                if ((area === 'Lectura' || area === 'Escritura' || area === 'Matematicas') && (grado === 'Preescolar' || grado === 'Primero')) {
+                    // Ignorar generación en reporte
+                } else {
+                    evaluacionesReales = true;
+                    let htmlTbody = "";
+                    const procList = dbProcesos[area][grado];
+                    if(procList) {
+                        procList.forEach((proc, procIdx) => {
+                            let c1 = 0; let c2 = 0; let itemsHtml = "";
+                            proc.items.forEach((item, itemIdx) => {
+                                const radio = document.querySelector(`input[name="eval_${areaIdx}_${procIdx}_${itemIdx}"]:checked`);
+                                if (radio) {
+                                    if (radio.value === "1") { c1++; itemsHtml += `<li class="li-dificultad"><strong>[Dificultad]</strong> ${item}</li>`; }
+                                    else if (radio.value === "2") { c2++; itemsHtml += `<li class="li-proceso"><strong>[En Proceso]</strong> ${item}</li>`; }
+                                }
+                            });
+                            
+                            // Imprimir en la matriz solo los que requieren ajuste (1 o 2)
+                            if(c1 > 0 || c2 > 0) {
+                                htmlTbody += `<tr>
+                                    <td><strong style="color: #4a235a;">${proc.proc}</strong><ul class="item-list">${itemsHtml}</ul></td>
+                                    <td style="background-color: #f4fbf0;">${proc.adjAula}</td>
+                                    <td style="background-color: #ffffff;">${proc.adjCasa}</td>
+                                </tr>`;
+                                totalDif += c1; totalProc += c2;
+                            }
+                        });
+                    }
+
+                    if(htmlTbody !== "") {
+                        matrizContainer.innerHTML += `
+                            <h4 style="margin:20px 0 5px 0; color:#2d6a4f; border-bottom:2px solid #e2f0d9;">📌 MATRIZ ${area.toUpperCase()}</h4>
+                            <table class="results-table">
+                                <thead><tr><th style="width:35%;">Proceso y Dificultad Detectada</th><th style="width:30%;">🏫 Ajuste Sugerido (Aula)</th><th style="width:35%;">🏡 Apoyo Sugerido (Casa)</th></tr></thead>
+                                <tbody>${htmlTbody}</tbody>
+                            </table>`;
+                    } else {
+                        matrizContainer.innerHTML += `<h4 style="margin:20px 0 5px 0; color:#2d6a4f;">📌 MATRIZ ${area.toUpperCase()}</h4><p style="padding:10px; background:#e2f0d9; color:#385723; border-radius:5px;">✨ Desempeño Adecuado en todos los procesos valorados. No requiere matrices de apoyo en esta área.</p>`;
+                    }
+                }
+            });
+        }
+
+        // Criterio de Resolución Final
         document.getElementById("cb_esperado").checked = false;
         document.getElementById("cb_fortalecer").checked = false;
         document.getElementById("cb_seguimiento").checked = false;
         document.getElementById("cb_remision").checked = false;
         document.querySelectorAll('.concepto-item').forEach(el => el.classList.remove('selected'));
 
-        document.getElementById("lbl_fortalecer").innerText = `Requiere fortalecimiento pedagógico en procesos específicos de ${areaSelect.value}.`;
-
-        if (totalDificultadesCriticas === 0 && totalEnProceso === 0) {
-            document.getElementById("cb_esperado").checked = true;
-            document.getElementById("c_esperado").classList.add("selected");
-        } else if (totalDificultadesCriticas === 0 && totalEnProceso > 0) {
-            document.getElementById("cb_fortalecer").checked = true;
-            document.getElementById("c_fortalecer").classList.add("selected");
-        } else if (totalDificultadesCriticas > 0 && totalDificultadesCriticas <= 2) {
-            document.getElementById("cb_seguimiento").checked = true;
-            document.getElementById("c_seguimiento").classList.add("selected");
-        } else if (totalDificultadesCriticas > 2) {
-            document.getElementById("cb_remision").checked = true;
-            document.getElementById("c_remision").classList.add("selected");
-        }
-
-        // CARGAR LAS 10 ESTRATEGIAS DUA SEGÚN EL ÁREA
-        const duaListContainer = document.getElementById("dua-list-items");
-        duaListContainer.innerHTML = "";
-        if (estrategiasDUA[areaValue]) {
-            estrategiasDUA[areaValue].forEach((estrategia, index) => {
-                const li = document.createElement("li");
-                li.innerHTML = `<strong>${index + 1}.</strong> ${estrategia}`;
-                duaListContainer.appendChild(li);
-            });
-            document.getElementById("dua-container").classList.remove("hidden");
+        if (evaluacionesReales) {
+            if (totalDif === 0 && totalProc === 0) { document.getElementById("cb_esperado").checked = true; document.getElementById("c_esperado").classList.add("selected"); }
+            else if (totalDif === 0 && totalProc > 0) { document.getElementById("cb_fortalecer").checked = true; document.getElementById("c_fortalecer").classList.add("selected"); }
+            else if (totalDif > 0 && totalDif <= 3) { document.getElementById("cb_seguimiento").checked = true; document.getElementById("c_seguimiento").classList.add("selected"); }
+            else if (totalDif > 3) { document.getElementById("cb_remision").checked = true; document.getElementById("c_remision").classList.add("selected"); }
         } else {
-            document.getElementById("dua-container").classList.add("hidden");
+            document.getElementById("cb_esperado").checked = true; document.getElementById("c_esperado").classList.add("selected");
         }
 
-        // Cambio de pantalla
-        document.getElementById("screen-form").classList.remove("active");
-        document.getElementById("screen-results").classList.add("active");
-        window.scrollTo(0, 0);
-    }
-
-    function goBack() {
-        document.getElementById("screen-results").classList.remove("active");
-        document.getElementById("screen-form").classList.add("active");
-        window.scrollTo(0, 0);
+        navigate('screen-unified-report');
     }
 </script>
 
