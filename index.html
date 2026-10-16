@@ -39,6 +39,7 @@
         .nav-btn.yellow { border-color: #ffe6a7; background: #fffdf5; }
         .nav-btn.purple { border-color: #cdb4db; background: #faf5ff; }
         .nav-btn.cyan { border-color: #81ecec; background: #e0f7fa; }
+        .nav-btn.peach { border-color: #ffcad4; background: #fff5f7; }
         .nav-icon { font-size: 2.5em; margin-bottom: 8px; }
         .nav-title { font-weight: 900; font-size: 0.9em; line-height: 1.2; }
 
@@ -54,7 +55,7 @@
         input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 12px; border: 2px solid #e0c3fc; border-radius: 12px; font-family: 'Nunito', sans-serif; font-size: 15px; outline: none; background-color: #fafafa; margin-bottom: 10px; color: #333; }
         textarea { resize: vertical; min-height: 80px; }
         .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; background: #fafafa; padding: 12px; border-radius: 10px; border: 1px solid #eee; }
-        .checkbox-label { display: flex; align-items: flex-start; gap: 8px; font-weight: normal; color: #444; font-size: 0.9em; cursor: pointer; line-height: 1.4; }
+        .checkbox-label { display: flex; align-items: flex-start; gap: 8px; font-weight: normal; color: #444; font-size: 0.9em; cursor: pointer; line-height: 1.4; margin-top: 0; }
         .checkbox-label input { margin-top: 3px; accent-color: var(--primary-dark); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer;}
         
         details { background: white; border-radius: 10px; margin-bottom: 10px; border: 1px solid #e0c3fc; overflow: hidden; }
@@ -62,6 +63,7 @@
         summary::-webkit-details-marker { display: none; }
         .details-content { padding: 15px; background: white; border-top: 1px solid #eee; font-size: 0.9em; line-height: 1.5; }
         .details-content ul, .details-content ol { padding-left: 20px; margin-top: 5px; }
+        .details-content li { margin-bottom: 6px; }
 
         /* Checklist por Áreas */
         .area-wrapper { margin-top: 20px; border: 2px solid #a9d18e; border-radius: 15px; overflow: hidden; }
@@ -71,7 +73,7 @@
         .check-item { margin-bottom: 15px; background: #fafafa; padding: 10px; border-radius: 8px; border: 1px solid #f0f0f0;}
         .check-item p { margin: 0 0 8px 0; font-weight: 700; color: #444; font-size: 0.9em; line-height: 1.3; }
         .options-group { display: flex; gap: 6px; }
-        .option-label { flex: 1; text-align: center; padding: 10px 4px; border-radius: 10px; font-size: 0.75em; font-weight: bold; cursor: pointer; border: 2px solid #eee; color: #888; transition: all 0.2s; }
+        .option-label { flex: 1; text-align: center; padding: 10px 4px; border-radius: 10px; font-size: 0.75em; font-weight: bold; cursor: pointer; border: 2px solid #eee; color: #888; transition: all 0.2s; margin-top: 0; }
         .option-label input { display: none; }
         input[value="3"]:checked + .option-label { background-color: #e2f0d9; border-color: #a9d18e; color: #385723; }
         input[value="2"]:checked + .option-label { background-color: #fff2cc; border-color: #ffd966; color: #7f6000; }
@@ -94,11 +96,17 @@
         .results-table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin-bottom: 15px;}
         .results-table th { background-color: #e0c3fc; color: #4a235a; padding: 10px; text-align: left; border: 1px solid #b185db; }
         .results-table td { padding: 10px; border: 1px solid #ccc; vertical-align: top; }
+        .tracking-table { width: 100%; border-collapse: collapse; font-size: 0.82em; margin-bottom: 20px; page-break-inside: avoid; }
+        .tracking-table th { background-color: #e0c3fc; color: #4a235a; padding: 8px; text-align: center; border: 1px solid #b185db; font-weight: bold; }
+        .tracking-table td { padding: 8px; border: 1px solid #ccc; vertical-align: top; height: 65px; }
         .item-list { margin: 5px 0 0 0; padding-left: 15px; }
         .item-list li { margin-bottom: 4px; }
         .li-dificultad::marker { color: #c65911; font-weight:bold; }
         .li-proceso::marker { color: #7f6000; font-weight:bold; }
-        .signatures { display: flex; justify-content: space-between; margin-top: 60px; text-align: center; }
+        .concepto-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; padding: 6px; border-radius: 6px; }
+        .concepto-item label { margin: 0; font-weight: normal; color: #333; }
+        .concepto-item.selected { background-color: #f4fbf0; font-weight: bold; }
+        .signatures { display: flex; justify-content: space-between; margin-top: 60px; text-align: center; page-break-inside: avoid; }
         .sig-line { border-top: 1px solid #333; width: 45%; padding-top: 5px; font-weight: bold; font-size: 0.9em; }
 
         @media print {
@@ -106,10 +114,10 @@
             #screen-unified-report, #screen-unified-report * { visibility: visible; }
             #screen-unified-report { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; }
             .doc-container { box-shadow: none; border: none; padding: 0; margin: 0; width: 100%; }
-            .app-header, .floating-action, .back-nav { display: none !important; }
+            .app-header, .floating-action, .back-nav, .no-print { display: none !important; }
             html, body { height: auto; background: white; margin: 0; padding: 0; }
-            .results-table th { background-color: #f0f0f0 !important; color: #000 !important; border: 1px solid #000 !important; }
-            .results-table td { border: 1px solid #000 !important; }
+            .results-table th, .tracking-table th { background-color: #f0f0f0 !important; color: #000 !important; border: 1px solid #000 !important; -webkit-print-color-adjust: exact; }
+            .results-table td, .tracking-table td, .doc-table th, .doc-table td { border: 1px solid #000 !important; }
         }
     </style>
 </head>
@@ -145,11 +153,19 @@
                 <div class="nav-title">Generación de Ajustes</div>
             </div>
             
+            <!-- Botón Reporte de Novedades -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-Dn348oke1QU0A4RcUflNtrqBKuU_0uwVobl6tW0Vhqnx5g/viewform?usp=header" target="_blank" style="text-decoration: none; grid-column: span 2;">
+                <div class="nav-btn peach" style="height: 85px; flex-direction: row; gap: 15px;">
+                    <div class="nav-icon" style="margin:0;">📢</div>
+                    <div class="nav-title" style="color: #9d2b4b; font-size: 1em;">Reporte de novedades</div>
+                </div>
+            </a>
+
             <!-- Botón Repositorio -->
             <a href="https://internoredpedu-my.sharepoint.com/:f:/g/personal/maria_torres029_educacionbogota_edu_co/IgCG2pIzc-hUR5tdyrCku2xfAVFvajsl0uMI1jYyNzIJoOc" target="_blank" style="text-decoration: none; grid-column: span 2;">
-                <div class="nav-btn cyan" style="height: 90px; flex-direction: row; gap: 15px;">
+                <div class="nav-btn cyan" style="height: 85px; flex-direction: row; gap: 15px;">
                     <div class="nav-icon" style="margin:0;">📁</div>
-                    <div class="nav-title" style="color: #00838f;">Repositorio (Material de apoyo)</div>
+                    <div class="nav-title" style="color: #00838f; font-size: 1em;">Repositorio (Material de apoyo)</div>
                 </div>
             </a>
         </div>
@@ -204,7 +220,7 @@
                 <ul>
                     <li><strong>Exclusión/Segregación:</strong> Separación total del sistema educativo regular.</li>
                     <li><strong>Integración:</strong> El alumno considerado "especial" accede a la escuela tradicional, pero debe adaptarse a un sistema inalterado.</li>
-                    <li><strong>Inclusión:</strong> Reconoce y valora la diversidad. Es el sistema de enseñanza (la escuela) el que debe adaptarse al alumnado para dar respuesta a sus necesidades.</li>
+                    <li><strong>Inclusión:</strong> Reconoce y valora la diversidad. Es el sistema de enseñanza (la escuela) el que se flexibiliza para dar respuesta a las diversas formas de aprender.</li>
                 </ul>
             </div>
         </details>
@@ -214,8 +230,8 @@
             <div class="details-content">
                 <ul>
                     <li><strong>Modelo Médico:</strong> Entiende la discapacidad como una deficiencia o enfermedad que reside en el individuo y que debe ser tratada o corregida. Busca rehabilitar a la persona para adaptarla a la sociedad.</li>
-                    <li><strong>Modelo Social:</strong> Plantea que las causas que originan la discapacidad son en gran medida sociales (barreras del entorno). Diferencia entre deficiencia (física) y discapacidad (restricción social).</li>
-                    <li><strong>Modelo de Derechos:</strong> Reconoce a las personas con discapacidad como titulares de derechos. La discapacidad es resultado de la interacción entre la persona y un entorno que no ofrece ajustes razonables.</li>
+                    <li><strong>Modelo Social:</strong> Plantea que las causas que originan la discapacidad son en gran medida sociales (barreras del entorno). Diferencia entre condición (individual) y barrera (contextual).</li>
+                    <li><strong>Modelo de Derechos:</strong> Reconoce a las personas con discapacidad como titulares de derechos. La discapacidad es resultado de la interacción entre la persona y un entorno que requiere ajustes razonables.</li>
                 </ul>
             </div>
         </details>
@@ -223,12 +239,12 @@
         <details style="border-color: #ff8fab;">
             <summary>El PIAR (Plan Individual de Ajustes)</summary>
             <div class="details-content">
-                <p>Es una herramienta para garantizar los procesos de enseñanza. Requiere 8 pasos:</p>
+                <p>Es una herramienta para garantizar los procesos de enseñanza y aprendizaje. Requiere 8 pasos:</p>
                 <ol>
                     <li>Conformar el equipo y definir el caso.</li>
                     <li>Recoger información clave (contexto, familia).</li>
                     <li>Definir el perfil de aprendizaje (intereses, capacidades).</li>
-                    <li>Identificar barreras (físicas, actitudinales, didácticas).</li>
+                    <li>Identificar barreras en la interacción con el entorno.</li>
                     <li>Fijar metas claras y medibles (PIAR).</li>
                     <li>Definir ajustes razonables (acceso, didáctica, evaluación).</li>
                     <li>Planificar responsables y tiempos.</li>
@@ -249,7 +265,7 @@
         <details style="border-color: #a0c4ff;" open>
             <summary>Lectura (Dislexia)</summary>
             <div class="details-content">
-                <p>Trastorno del neurodesarrollo que afecta el reconocimiento preciso y fluido de las palabra.</p>
+                <p>Trastorno del neurodesarrollo que afecta el reconocimiento preciso y fluido de las palabras.</p>
                 <ul>
                     <li><strong>Ruta Fonológica (Indirecta):</strong> Decodificación letra por sonido. Cuando falla, hay <strong>Dislexia Fonológica</strong> (dificultad para leer pseudopalabras y segmentar).</li>
                     <li><strong>Ruta Léxica (Directa):</strong> Diccionario visual de palabras. Cuando falla, hay <strong>Dislexia Superficial o Visoespacial</strong> (lectura lenta, silabeo, confusión de homófonos).</li>
@@ -263,7 +279,7 @@
             <div class="details-content">
                 <p>Proceso complejo que requiere lenguaje, conciencia fonológica y desarrollo psicomotor.</p>
                 <ul>
-                    <li><strong>Disgrafía Grafomotora:</strong> Problemas en precurrentes (pinza digital, coordinación motriz, esquema corporal) .</li>
+                    <li><strong>Disgrafía Grafomotora:</strong> Problemas en precurrentes (pinza digital, coordinación motriz, esquema corporal).</li>
                     <li><strong>Disgrafía Evolutiva:</strong> Dificultades fonológicas (escribir el sonido) o superficiales (ortografía por vía léxica).</li>
                 </ul>
                 <p><strong>Tipos de errores:</strong> Fonológicos (kasa por casa), Morfosintácticos (frases desordenadas), Planificación (ideas sin conexión ejecutiva), Motores (letra ilegible).</p>
@@ -310,8 +326,8 @@
                 <ul>
                     <li><strong>Visual, Auditivo, Táctil, Olfativo y Gustativo.</strong></li>
                     <li><strong>Vestibular:</strong> Oído interno. Regula equilibrio, postura y alerta. El niño que busca movimiento constante o teme a las alturas.</li>
-                    <li><strong>Propioceptivo:</strong> Músculos y articulaciones. Informa sobre la posición del cuerpo y regula la fuerza (el niño que rompe la punta del lápiz o busca golpes).</li>
-                    <li><strong>Interoceptivo:</strong> Receptores viscerales (Insula). Procesa estados internos (hambre, ganas de ir al baño, emociones). Dificultad para regularse sin razón aparente.</li>
+                    <li><strong>Propioceptivo:</strong> Músculos y articulaciones. Informa sobre la posición del cuerpo y regula la fuerza (el niño que rompe la punta del lápiz o busca presión).</li>
+                    <li><strong>Interoceptivo:</strong> Receptores viscerales (Ínsula). Procesa estados internos (hambre, ganas de ir al baño, emociones). Dificultad para regularse sin razón aparente.</li>
                 </ul>
             </div>
         </details>
@@ -361,7 +377,7 @@
                     <li><strong>Sistema Límbico (Amígdala - Pulgar):</strong> Centro emocional y de memoria.</li>
                     <li><strong>Corteza Prefrontal (Dedos):</strong> Razonamiento, lenguaje y funciones ejecutivas.</li>
                 </ul>
-                <p><strong>Secuestro Amigdalar:</strong> La amígdala domina a la corteza. El niño reacciona de forma impulsiva o agresiva. El pensamiento racional "se desconecta". ¡No se puede razonar en este estado!.</p>
+                <p><strong>Secuestro Amigdalar:</strong> La amígdala domina a la corteza. El niño reacciona de forma impulsiva o agresiva. El pensamiento racional "se desconecta". ¡No se puede razonar en este estado!</p>
             </div>
         </details>
 
@@ -400,7 +416,7 @@
     <div class="content">
         <div class="info-card" style="border-color: #a0c4ff;">
             <h3>¿Qué es el DUA?</h3>
-            <p>El Diseño Universal para el Aprendizaje es un marco basado en la neurociencia que busca eliminar barreras desde el diseño inicial de la clase, empoderando a aprendices reflexivos y estratégicos.</p>
+            <p>El Diseño Universal para el Aprendizaje es un marco basado en la neurociencia que busca eliminar barreras desde la planeación de la clase, ofreciendo diversas opciones para que todos los estudiantes alcancen el aprendizaje.</p>
         </div>
         
         <details style="border-color: #a0c4ff;" open>
@@ -438,6 +454,25 @@
                 </ul>
             </div>
         </details>
+
+        <!-- NUEVO: 10 ESTRATEGIAS DUA PARA APLICAR EN EL AULA -->
+        <details style="border-color: #6c3483;" open>
+            <summary style="background: #f0e6ff; color: #4a235a;">🌟 10 Estrategias DUA Prácticas para el Aula</summary>
+            <div class="details-content">
+                <ol>
+                    <li><strong>Tableros de Elección (Menús de Aprendizaje):</strong> Permitir que el estudiante elija entre 2 o 3 opciones cómo demostrar lo aprendido (ej. elaborar una historieta, hacer una exposición oral breve o construir una maqueta/esquema).</li>
+                    <li><strong>Instrucciones Multisensoriales en 3 Pasos:</strong> Presentar las indicaciones combinando voz, texto corto y apoyo visual (1. Lee, 2. Dibuja, 3. Comparte), verificando el primer paso antes de avanzar.</li>
+                    <li><strong>Organizadores Gráficos y Mapas Visuales:</strong> Entregar esquemas previos (mapas mentales, líneas de tiempo, secuencias de inicio-nudo-desenlace) para estructurar ideas antes de leer o escribir.</li>
+                    <li><strong>Estaciones o Rincones de Aprendizaje Rotativos:</strong> Organizar el aula en momentos o estaciones (una manipulativa, una visual/audiovisual y una de trabajo cooperativo) para abordar un mismo tema desde distintas vías.</li>
+                    <li><strong>Glosarios Visuales y Bancos de Palabras:</strong> Facilitar tarjetas, carteleras o llaveros con el vocabulario clave de la clase acompañado de imágenes o pictogramas para apoyar la comprensión.</li>
+                    <li><strong>Aprendizaje Cooperativo con Roles Diversificados:</strong> Conformar equipos donde cada estudiante asuma un rol acorde a sus fortalezas (ilustrador, relator, encargado de materiales, guardián del tiempo).</li>
+                    <li><strong>Fraccionamiento de Tareas (Técnica por Bloques):</strong> Dividir guías o talleres extensos en retos cortos de 10 a 15 minutos, intercalando pausas activas o de regulación sensorial.</li>
+                    <li><strong>Evaluación Multiformato y Flexible:</strong> Diversificar las valoraciones combinando preguntas con apoyo gráfico, sustentación oral, uso de material concreto (como base diez o fichas) y valoración del proceso.</li>
+                    <li><strong>Autogestión con Listas de Chequeo (Checklists en Pupitre):</strong> Brindar al estudiante una mini-lista visual de pasos en su mesa para que marque su propio avance, fortaleciendo sus funciones ejecutivas y autonomía.</li>
+                    <li><strong>Acuerdos de Regulación y Pausas Sensoriales:</strong> Disponer de estrategias de retorno a la calma (respiración guiada, rincón tranquilo, apoyos manipulables silenciosos o cambio de postura) para sostener la atención.</li>
+                </ol>
+            </div>
+        </details>
     </div>
 </div>
 
@@ -450,41 +485,38 @@
     <div class="content">
         <div class="info-card" style="border-color: #ffe6a7;">
             <h3>¿Qué son las BAP?</h3>
-            <p>Las Barreras para el Aprendizaje y la Participación (BAP) surgen de la interacción entre el estudiante y su entorno. No son deficiencias del niño, sino obstáculos que pone el contexto.</p>
+            <p>Las Barreras para el Aprendizaje y la Participación (BAP) surgen de la interacción entre las características particulares de aprendizaje del estudiante y las condiciones del entorno. Identificarlas permite ajustar los apoyos sin culpabilizar al estudiante ni al docente.</p>
         </div>
         
         <details style="border-color: #ffe6a7;" open>
-            <summary>Barreras Políticas (Normativas)</summary>
+            <summary>Barreras Institucionales y Organizativas</summary>
             <div class="details-content">
                 <ul>
-                    <li>Leyes o normativas contradictorias en la institución.</li>
-                    <li>Ausencia de políticas claras de inclusión en el Proyecto Educativo Institucional (PEI).</li>
-                    <li>Falta de asignación de recursos o personal de apoyo (orientación, educadores especiales).</li>
-                    <li>Sistemas de evaluación rígidos e inflexibles mandatados por la dirección.</li>
+                    <li>Requerimiento de mayor articulación con redes de apoyo interdisciplinario o servicios externos de salud.</li>
+                    <li>Necesidad de flexibilizar tiempos, espacios o criterios de promoción acorde al ritmo evolutivo del estudiante.</li>
+                    <li>Limitaciones de acceso a recursos especializados, conectividad o materiales adaptados.</li>
                 </ul>
             </div>
         </details>
 
         <details style="border-color: #ffe6a7;">
-            <summary>Barreras Culturales (Actitudinales)</summary>
+            <summary>Barreras Socioafectivas y Actitudinales</summary>
             <div class="details-content">
                 <ul>
-                    <li>Prejuicios, estigmas y estereotipos sobre la discapacidad ("él no puede aprender eso").</li>
-                    <li>Bajas expectativas de docentes y familias hacia el estudiante.</li>
-                    <li>Resistencia al cambio por parte de la comunidad educativa ("siempre se ha enseñado así").</li>
-                    <li>Aislamiento social o bullying por parte de los pares.</li>
+                    <li>Baja percepción de autoeficacia o temor al fracaso escolar por experiencias previas de frustración.</li>
+                    <li>Sensibilidad frente a etiquetas o diagnósticos que afectan la seguridad y participación del estudiante.</li>
+                    <li>Desafíos en la convivencia con pares, aislamiento en tiempos libres o sobreprotección en el entorno que limita la autonomía.</li>
                 </ul>
             </div>
         </details>
 
         <details style="border-color: #ffe6a7;">
-            <summary>Barreras Didácticas (Prácticas)</summary>
+            <summary>Barreras en la Forma de Aprendizaje y Acceso</summary>
             <div class="details-content">
                 <ul>
-                    <li>Métodos de enseñanza homogeneizadores (talla única para todos).</li>
-                    <li>Ausencia de implementación del Diseño Universal para el Aprendizaje (DUA).</li>
-                    <li>Evaluaciones estandarizadas sin ajustes razonables.</li>
-                    <li>Falta de apoyos visuales, materiales manipulativos o tecnología en el aula.</li>
+                    <li>Estilo de procesamiento que requiere apoyos multisensoriales, concretos y visuales más allá del formato estándar.</li>
+                    <li>Dificultad del estudiante para retener instrucciones extensas o información presentada por una sola vía (solo oral o solo escrita).</li>
+                    <li>Sensibilidad sensorial a estímulos auditivos o visuales propios de aulas numerosas.</li>
                 </ul>
             </div>
         </details>
@@ -548,6 +580,25 @@
                     <label class="checkbox-label"><input type="checkbox" name="dua_exp" value="el uso de herramientas tecnológicas adaptadas"> Uso de herramientas digitales o tecnológicas.</label>
                     <label class="checkbox-label"><input type="checkbox" name="dua_exp" value="tiempos extendidos o flexibilizados"> Requiere más tiempo para ejecutar las tareas o evaluaciones.</label>
                 </div>
+
+                <!-- Selección opcional de las 10 Estrategias DUA de Aula -->
+                <details style="margin-top: 10px;">
+                    <summary>🌟 Seleccionar Estrategias DUA de Aula a implementar (Opcional)</summary>
+                    <div class="details-content">
+                        <div class="checkbox-group" style="margin-bottom:0; border:none;">
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Tableros de Elección (Menús de Aprendizaje): Permitir elegir entre 2 o 3 opciones cómo demostrar lo aprendido."> 1. Tableros de Elección (Menús de Aprendizaje).</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Instrucciones Multisensoriales en 3 Pasos: Combinar voz, texto corto e íconos visuales paso a paso."> 2. Instrucciones Multisensoriales en 3 Pasos.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Organizadores Gráficos y Mapas Visuales: Esquemas previos para estructurar ideas antes de leer o escribir."> 3. Organizadores Gráficos y Mapas Visuales.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Estaciones o Rincones de Aprendizaje: Actividades rotativas (manipulativa, visual y cooperativa)."> 4. Estaciones o Rincones de Aprendizaje.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Glosarios Visuales y Bancos de Palabras: Tarjetas o llaveros con vocabulario clave e imágenes."> 5. Glosarios Visuales y Bancos de Palabras.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Aprendizaje Cooperativo con Roles: Asignación de funciones en equipo acordes a las fortalezas del estudiante."> 6. Aprendizaje Cooperativo con Roles.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Fraccionamiento de Tareas por Bloques: Dividir guías extensas en retos cortos de 10 a 15 minutos."> 7. Fraccionamiento de Tareas por Bloques.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Evaluación Multiformato y Flexible: Combinar apoyo gráfico, sustentación oral y material concreto."> 8. Evaluación Multiformato y Flexible.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Autogestión con Listas de Chequeo en Pupitre: Mini-lista visual de pasos para marcar su propio avance."> 9. Autogestión con Listas de Chequeo en Pupitre.</label>
+                            <label class="checkbox-label"><input type="checkbox" name="dua_est_aula" value="Acuerdos de Regulación y Pausas Sensoriales: Estrategias de retorno a la calma y pausas activas."> 10. Acuerdos de Regulación y Pausas Sensoriales.</label>
+                        </div>
+                    </div>
+                </details>
             </div>
 
             <!-- 3. Socioemocional -->
@@ -577,55 +628,62 @@
                 </div>
             </div>
 
-            <!-- 4. Barreras Formulario Completo -->
+            <!-- 4. Barreras Formulario Completo (Redacción centrada en la forma de aprendizaje y el estudiante) -->
             <div class="form-group">
-                <div class="section-header">4. Identificación de Barreras (Decreto 1421)</div>
-                <p class="helper-text" style="color: #6c3483;">Identifique qué obstáculos pone el contexto institucional. El sistema generará las estrategias automáticamente en el informe final.</p>
+                <div class="section-header">4. Identificación de Barreras en el Proceso de Aprendizaje (Decreto 1421)</div>
+                <p class="helper-text" style="color: #6c3483;">Identifique las barreras asociadas a la forma de aprendizaje del estudiante y su interacción con el entorno. Puede escoger <strong>una, varias o ninguna</strong>.</p>
                 
+                <div style="background: #f4effa; padding: 10px 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #d8b4f8;">
+                    <label class="checkbox-label" style="font-weight: bold; color: #4a235a;">
+                        <input type="checkbox" id="cb_ninguna_barrera" onchange="toggleNingunaBarrera(this)">
+                        Ninguna barrera identificada (No aplica en este momento).
+                    </label>
+                </div>
+
                 <details>
-                    <summary>1. Barreras Actitudinales</summary>
+                    <summary>1. Barreras Socioafectivas y de Participación</summary>
                     <div class="details-content">
                         <div class="checkbox-group" style="margin-bottom:0; border:none;">
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existen bajas expectativas frente a las capacidades del estudiante."> Bajas expectativas frente a las capacidades del estudiante.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="El estudiante es etiquetado por su diagnóstico, condición o dificultad."> Etiquetado por su diagnóstico, condición o dificultad.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe rechazo, discriminación, burlas o aislamiento por parte de sus compañeros."> Rechazo, discriminación o aislamiento por pares.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Se presenta sobreprotección que limita su autonomía."> Sobreprotección que limita su autonomía.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante requiere fortalecer la confianza en sus propias capacidades y su percepción de autoeficacia frente a los retos escolares."> Requiere fortalecer la confianza en sus capacidades y autoeficacia frente a retos escolares.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="Se evidencia sensibilidad frente a diagnósticos o etiquetas previas que inciden en su motivación y participación."> Sensibilidad frente a diagnósticos o etiquetas previas que inciden en su participación.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante presenta desafíos para la integración social con sus pares, viéndose expuesto a dinámicas de aislamiento."> Desafíos en la integración social con pares o tendencia al aislamiento grupal.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante requiere desarrollar mayor autonomía e independencia frente al acompañamiento del adulto."> Necesidad de desarrollar mayor autonomía e independencia en sus rutinas escolares.</label>
                         </div>
                     </div>
                 </details>
 
                 <details>
-                    <summary>2. Barreras Pedagógicas o Didácticas</summary>
+                    <summary>2. Barreras en el Procesamiento y Forma de Aprendizaje</summary>
                     <div class="details-content">
                         <div class="checkbox-group" style="margin-bottom:0; border:none;">
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Se utiliza una única metodología de enseñanza para todos los estudiantes."> Uso de una única metodología de enseñanza para todos.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Las instrucciones son extensas, complejas o poco claras."> Instrucciones extensas, complejas o poco claras.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Predominan las actividades de copia, memorización o repetición."> Predominio de actividades de copia o memorización.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="No se utilizan apoyos visuales o material concreto."> Ausencia de apoyos visuales o material concreto.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="La forma de aprendizaje del estudiante requiere diversificar los canales de acceso más allá de las explicaciones convencionales."> Su forma de aprendizaje requiere diversificar los canales de acceso más allá del formato estándar.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El procesamiento de información del estudiante requiere que las instrucciones sean breves, concretas y segmentadas paso a paso."> Su procesamiento requiere que las instrucciones sean breves, concretas y paso a paso.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estilo de aprendizaje del estudiante presenta dificultades frente a actividades de copia extensa, mecanización o memorización."> Dificultad para consolidar aprendizajes mediante actividades de copia extensa o memorización.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="Para la comprensión de conceptos abstractos, el estudiante requiere el apoyo constante de referentes visuales y material concreto."> Alta necesidad de apoyos visuales y material concreto para comprender conceptos abstractos.</label>
                         </div>
                     </div>
                 </details>
 
                 <details>
-                    <summary>3. Barreras Curriculares y Evaluativas</summary>
+                    <summary>3. Barreras en el Ritmo de Aprendizaje y Expresión Evaluativa</summary>
                     <div class="details-content">
                         <div class="checkbox-group" style="margin-bottom:0; border:none;">
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Los objetivos de aprendizaje son rígidos y no consideran las características del estudiante."> Objetivos rígidos que no consideran sus características.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="No se flexibilizan los tiempos para desarrollar las actividades o evaluaciones."> No se flexibilizan tiempos de desarrollo/evaluación.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="La evaluación se realiza únicamente mediante pruebas escritas."> Evaluación realizada únicamente mediante pruebas escritas.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Se evalúa principalmente el resultado y no el proceso."> Se evalúa principalmente el resultado y no el proceso.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="Se identifica un desfase entre el ritmo de aprendizaje actual del estudiante y los objetivos estandarizados del grado."> Desfase entre el ritmo de aprendizaje del estudiante y los objetivos estándar del grado.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El ritmo de procesamiento y ejecución del estudiante requiere tiempos adicionales o flexibilizados en actividades y evaluaciones."> Su ritmo de procesamiento y ejecución requiere tiempos adicionales o flexibilizados.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante presenta barreras para demostrar sus aprendizajes únicamente a través de pruebas escritas tradicionales."> Barreras para demostrar lo aprendido únicamente mediante pruebas escritas tradicionales.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="Por su proceso evolutivo, el estudiante requiere que se valore prioritariamente su avance gradual y esfuerzo formativo."> Requiere valoración centrada en su proceso gradual y esfuerzo más que en el resultado final.</label>
                         </div>
                     </div>
                 </details>
 
                 <details>
-                    <summary>4. Barreras Físicas, Comunicativas y Tecnológicas</summary>
+                    <summary>4. Barreras Sensoriales, Comunicativas y Tecnológicas</summary>
                     <div class="details-content">
                         <div class="checkbox-group" style="margin-bottom:0; border:none;">
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="El estudiante presenta dificultad para comprender instrucciones orales."> Dificultad para comprender instrucciones orales.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Los textos utilizados son extensos o presentan lenguaje complejo."> Textos muy extensos o de lenguaje complejo.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe exceso de ruido, estímulos visuales o distractores."> Exceso de ruido o distractores visuales.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Los recursos digitales no son accesibles o hay dificultad tecnológica."> Dificultad de acceso o manejo tecnológico.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante presenta desafíos para retener y comprender instrucciones brindadas exclusivamente por vía oral."> Desafíos para retener y comprender instrucciones presentadas únicamente por vía oral.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante experimenta fatiga cognitiva o dificultad de comprensión ante textos extensos o con vocabulario complejo."> Fatiga lectora o dificultad de comprensión ante textos extensos o de lenguaje complejo.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante presenta alta sensibilidad sensorial ante el ruido, estímulos visuales o distractores del entorno."> Alta sensibilidad sensorial ante el ruido, estímulos visuales o distractores del entorno.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El estudiante presenta barreras en el acceso, familiarización o manejo autónomo de recursos digitales y tecnológicos."> Dificultad en el acceso o manejo autónomo de herramientas digitales y tecnológicas.</label>
                         </div>
                     </div>
                 </details>
@@ -634,27 +692,40 @@
                     <summary>5. Barreras Institucionales, Sociales y Familiares</summary>
                     <div class="details-content">
                         <div class="checkbox-group" style="margin-bottom:0; border:none;">
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe poca articulación entre docentes y profesionales de apoyo."> Poca articulación entre docentes y equipo de apoyo.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existe poca comunicación entre la familia y la institución educativa."> Poca comunicación familia-institución.</label>
-                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" value="Existen dificultades económicas para acceder a materiales, transporte o conectividad."> Dificultades económicas para materiales o recursos.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="El proceso del estudiante requiere fortalecer la articulación interdisciplinaria con redes de apoyo internas y externas."> Requiere fortalecer la articulación interdisciplinaria y redes de apoyo escolar/externo.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="Se presentan intermitencias en los canales de comunicación y seguimiento corresponsable entre la familia y el colegio."> Intermitencia en la comunicación y seguimiento conjunto entre la familia y la institución.</label>
+                            <label class="checkbox-label"><input type="checkbox" class="barrera-cb" onchange="desmarcarNinguna()" value="Factores socioeconómicos o del contexto familiar limitan el acceso continuo a materiales, transporte o conectividad."> Dificultades socioeconómicas del contexto para el acceso a materiales o conectividad.</label>
                         </div>
                     </div>
                 </details>
+
+                <!-- NUEVO: Espacio para sugerencias en Barreras Institucionales -->
+                <label for="cp_sugerencias_barreras">💡 Sugerencias u observaciones frente a las Barreras Institucionales / Contextuales (Opcional):</label>
+                <textarea id="cp_sugerencias_barreras" placeholder="Escriba aquí sugerencias, observaciones o requerimientos específicos frente a las barreras institucionales o del entorno..."></textarea>
             </div>
 
-            <!-- 5. Áreas a Evaluar (Múltiple) -->
+            <!-- 5. Áreas a Evaluar (Múltiple) + Espacio para sugerencias en ajustes de aula y hogar -->
             <div class="form-group" style="background-color: #f4fbf0; border-color: #b5e48c;">
                 <div class="section-header" style="color: #2d6a4f;">5. Áreas para Generación de Ajustes</div>
                 <p class="helper-text" style="color: #385723;">Seleccione las áreas a evaluar. El sistema cargará automáticamente los procesos académicos y conductuales acordes al <strong>grado exacto</strong> seleccionado en la primera sección.</p>
                 
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Lectura" onchange="renderChecklists()"> 📖 Lectura</label>
-                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Escritura" onchange="renderChecklists()"> ✏️ Escritura</label>
-                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Matematicas" onchange="renderChecklists()"> 🧮 Matemáticas</label>
-                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer;"><input type="checkbox" class="area-selector" value="Comportamiento" onchange="renderChecklists()"> 💖 Comportamiento</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer; margin-top:0;"><input type="checkbox" class="area-selector" value="Lectura" onchange="renderChecklists()"> 📖 Lectura</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer; margin-top:0;"><input type="checkbox" class="area-selector" value="Escritura" onchange="renderChecklists()"> ✏️ Escritura</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer; margin-top:0;"><input type="checkbox" class="area-selector" value="Matematicas" onchange="renderChecklists()"> 🧮 Matemáticas</label>
+                    <label style="background:#fff; padding:8px 12px; border-radius:10px; border:2px solid #a9d18e; cursor:pointer; margin-top:0;"><input type="checkbox" class="area-selector" value="Comportamiento" onchange="renderChecklists()"> 💖 Comportamiento</label>
                 </div>
 
                 <div id="checklists-container"></div>
+
+                <!-- NUEVO: Espacio para sugerencias en ajustes para el aula y el hogar -->
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 2px dashed #a9d18e;">
+                    <label for="cp_sugerencias_aula" style="color: #2d6a4f;">🏫 Sugerencias adicionales de Ajustes para el Aula (Opcional):</label>
+                    <textarea id="cp_sugerencias_aula" style="border-color: #a9d18e;" placeholder="Escriba aquí ajustes razonables, metodológicos o evaluativos adicionales recomendados para el aula..."></textarea>
+
+                    <label for="cp_sugerencias_hogar" style="color: #2d6a4f;">🏡 Sugerencias adicionales de Ajustes y Apoyos para el Hogar (Opcional):</label>
+                    <textarea id="cp_sugerencias_hogar" style="border-color: #a9d18e;" placeholder="Escriba aquí pautas, hábitos o compromisos adicionales sugeridos para la familia en casa..."></textarea>
+                </div>
             </div>
         </form>
     </div>
@@ -697,18 +768,38 @@
 
             <div class="doc-section-title">3. Análisis de Barreras y Estrategias Sugeridas</div>
             <div class="doc-text-block">
-                A partir de la valoración del contexto áulico e institucional frente al estudiante, se identifican las siguientes barreras y se determinan las respectivas estrategias de ajuste razonable:
+                A partir de la valoración del perfil de aprendizaje del estudiante y su interacción con el contexto escolar, se identifican los siguientes aspectos y sus respectivas estrategias de apoyo:
                 <table class="results-table" style="margin-top:10px;">
-                    <thead><tr><th style="width:45%;">Barrera Identificada en el Entorno</th><th>Estrategia Institucional Sugerida</th></tr></thead>
+                    <thead><tr><th style="width:45%;">Barrera Identificada en el Proceso / Entorno</th><th>Estrategia de Apoyo e Intervención Sugerida</th></tr></thead>
                     <tbody id="out_barreras_table"></tbody>
                 </table>
+                <div id="out_sugerencias_barreras_box" class="hidden" style="margin-top: 10px; padding: 10px; background: #faf5ff; border: 1px solid #b185db; border-radius: 6px; font-size: 0.9em;">
+                    <strong>Sugerencias frente a Barreras Institucionales / Contextuales:</strong>
+                    <p id="out_sugerencias_barreras_txt" style="margin: 5px 0 0 0; white-space: pre-line;"></p>
+                </div>
             </div>
 
             <div class="doc-section-title">4. Matriz de Evaluación por Áreas y Procesos</div>
             <div id="out_matrices_areas"></div>
+            <div id="out_sugerencias_ajustes_box" class="hidden" style="margin-top: 12px;">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50%;">🏫 Sugerencias Adicionales para el Aula</th>
+                            <th style="width:50%;">🏡 Sugerencias Adicionales para el Hogar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="out_sugerencias_aula_txt" style="white-space: pre-line;"></td>
+                            <td id="out_sugerencias_hogar_txt" style="white-space: pre-line;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             
             <div class="doc-section-title">5. Criterio Pedagógico Final</div>
-            <div class="concepto-final-box" style="margin-bottom: 30px;">
+            <div class="concepto-final-box" style="margin-bottom: 25px;">
                 <div class="concepto-item" id="c_esperado">
                     <input type="checkbox" id="cb_esperado"> <label>Desempeño acorde a lo esperado para el grado en los procesos evaluados.</label>
                 </div>
@@ -716,12 +807,62 @@
                     <input type="checkbox" id="cb_fortalecer"> <label id="lbl_fortalecer">Requiere fortalecimiento pedagógico constante en procesos formativos detectados "en proceso".</label>
                 </div>
                 <div class="concepto-item" id="c_seguimiento">
-                    <input type="checkbox" id="cb_seguimiento"> <label>Requiere seguimiento institucional, compromisos familiares y aplicación obligatoria de estrategias en aula.</label>
+                    <input type="checkbox" id="cb_seguimiento"> <label>Requiere seguimiento institucional, compromisos familiares y aplicación continua de estrategias de apoyo.</label>
                 </div>
                 <div class="concepto-item" id="c_remision">
                     <input type="checkbox" id="cb_remision"> <label>Dificultades significativas: Se recomienda remisión para valoración complementaria externa (neuropsicología, fonoaudiología, etc.).</label>
                 </div>
             </div>
+
+            <!-- NUEVO: 6. Cuadro de Seguimientos Periódicos (4 Sesiones) -->
+            <div class="doc-section-title">6. Cuadro de Seguimientos Periódicos</div>
+            <p class="no-print" style="font-size: 0.8em; color: #6c3483; margin-top: -5px; margin-bottom: 8px; font-style: italic;">💡 Puede escribir directamente dentro de las celdas antes de imprimir o dejarlas en blanco para diligenciar a mano.</p>
+            <table class="tracking-table">
+                <thead>
+                    <tr>
+                        <th style="width: 7%;">Sesión</th>
+                        <th style="width: 20%;">Nombre Completo</th>
+                        <th style="width: 14%;">Cargo</th>
+                        <th style="width: 13%;">Fecha de Seguimiento</th>
+                        <th style="width: 32%;">Observaciones<br><span style="font-weight: normal; font-size: 0.85em;">(Identificación de los avances y posibles replanteamientos de los ajustes o pautas)</span></th>
+                        <th style="width: 14%;">Firma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold;">1</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold;">2</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold;">3</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold;">4</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="signatures">
                 <div class="sig-line"><span id="firma_docente_nombre"></span><br><span id="firma_docente_area"></span></div>
@@ -741,6 +882,20 @@
         window.scrollTo(0,0);
     }
 
+    // LÓGICA PARA ESCOGER UNA, VARIAS O NINGUNA BARRERA
+    function toggleNingunaBarrera(checkbox) {
+        if (checkbox.checked) {
+            document.querySelectorAll('.barrera-cb').forEach(cb => cb.checked = false);
+        }
+    }
+
+    function desmarcarNinguna() {
+        const algunaMarcada = document.querySelectorAll('.barrera-cb:checked').length > 0;
+        if (algunaMarcada) {
+            document.getElementById('cb_ninguna_barrera').checked = false;
+        }
+    }
+
     // BASE DE DATOS ESTRUCTURADA POR ÁREA Y GRADO
     const dbProcesos = {
         "Comportamiento": {
@@ -750,7 +905,7 @@
                 { proc: "Adaptación a Rutinas", items: ["Llora en transiciones.", "No sigue instrucciones de un solo paso."], adjAula: "Horario visual, temporizadores, instrucciones cortas.", adjCasa: "Canciones de Transición para anticipar rutinas." }
             ],
             "Primero": [
-                { proc: "Autorregulación Conductual", items: ["SEs excesivamente inquieto, se levanta constantemente, no permanece en su asiento.", "Reacciona con llanto ante correcciones."], adjAula: "Semáforo del comportamiento, pausas activas.", adjCasa: "Termómetro Emocional para medir tolerancia." },
+                { proc: "Autorregulación Conductual", items: ["Es excesivamente inquieto, se levanta constantemente, no permanece en su asiento.", "Reacciona con llanto ante correcciones."], adjAula: "Semáforo del comportamiento, pausas activas.", adjCasa: "Termómetro Emocional para medir tolerancia." },
                 { proc: "Habilidades Sociales", items: ["Frecuentes conflictos en el recreo.", "No acepta perder en los juegos, le cuesta pedir perdón."], adjAula: "Role-playing de resolución pacífica.", adjCasa: "Juegos de mesa exclusivos para enseñar a perder." },
                 { proc: "Seguimiento de Instrucciones", items: ["No termina los trabajos por hablar.", "Olvida los pasos a seguir, requiere recordatorios."], adjAula: "Instrucciones segmentadas, Check-list visual.", adjCasa: "Mini Check-list con dibujos de pasos a seguir." }
             ],
@@ -859,27 +1014,27 @@
         }
     };
 
-    // ESTRATEGIAS AUTOMÁTICAS PARA BARRERAS 1421
+    // ESTRATEGIAS AUTOMÁTICAS PARA BARRERAS 1421 (Actualizadas con la nueva redacción)
     const estrategiasBarreras = {
-        "Existen bajas expectativas frente a las capacidades del estudiante.": "Establecer metas alcanzables y progresivas, reconociendo públicamente sus avances, capacidades y logros.",
-        "El estudiante es etiquetado por su diagnóstico, condición o dificultad.": "Utilizar lenguaje inclusivo centrado en la persona, evitando definir al estudiante por su diagnóstico.",
-        "Existe rechazo, discriminación, burlas o aislamiento por parte de sus compañeros.": "Implementar actividades de sensibilización, empatía, reconocimiento de la diversidad y aprendizaje cooperativo.",
-        "Se presenta sobreprotección que limita su autonomía.": "Asignar responsabilidades acordes con sus capacidades y disminuir gradualmente los apoyos innecesarios.",
-        "Se utiliza una única metodología de enseñanza para todos los estudiantes.": "Implementar DUA: presentar la información de múltiples formas (oral, visual, experiencial, material concreto).",
-        "Las instrucciones son extensas, complejas o poco claras.": "Dar una instrucción a la vez, utilizar lenguaje sencillo, fragmentar tareas y verificar la comprensión.",
-        "Predominan las actividades de copia, memorización o repetición.": "Incorporar actividades prácticas, lúdicas, experienciales y relacionadas con situaciones cotidianas.",
-        "No se utilizan apoyos visuales o material concreto.": "Incorporar sistemáticamente pictogramas, imágenes, organizadores gráficos, ejemplos visuales y objetos manipulables.",
-        "Los objetivos de aprendizaje son rígidos y no consideran las características del estudiante.": "Priorizar los aprendizajes esenciales y establecer metas graduales, observables y alcanzables.",
-        "No se flexibilizan los tiempos para desarrollar las actividades o evaluaciones.": "Ampliar el tiempo, permitir la entrega de actividades por etapas o reducir la cantidad de preguntas conservando lo esencial.",
-        "La evaluación se realiza únicamente mediante pruebas escritas.": "Permitir diferentes formas de respuesta: oral, gráfica, práctica, audiovisual o mediante material concreto.",
-        "Se evalúa principalmente el resultado y no el proceso.": "Utilizar rúbricas que valoren avances, esfuerzo, participación, estrategias y nivel de apoyo requerido.",
-        "El estudiante presenta dificultad para comprender instrucciones orales.": "Acompañar las instrucciones orales sistemáticamente con imágenes, gestos, ejemplos o demostraciones físicas.",
-        "Los textos utilizados son extensos o presentan lenguaje complejo.": "Adaptar los textos mediante lectura fácil, uso de frases cortas, palabras clave, resaltadores e imágenes asociadas.",
-        "Existe exceso de ruido, estímulos visuales o distractores.": "Organizar un espacio con menor carga sensorial, ubicar estratégicamente al estudiante y establecer pausas de regulación.",
-        "Los recursos digitales no son accesibles o hay dificultad tecnológica.": "Enseñar funciones tecnológicas mediante demostración guiada, paso a paso, y ofrecer formatos alternativos de trabajo.",
-        "Existe poca articulación entre docentes y profesionales de apoyo.": "Establecer reuniones periódicas formales con acuerdos, delegación de responsables y fechas de seguimiento en aula.",
-        "Existe poca comunicación entre la familia y la institución educativa.": "Establecer un canal de comunicación asertivo en agenda, centrado en avances y no solo en quejas conductuales.",
-        "Existen dificultades económicas para acceder a materiales, transporte o conectividad.": "Ofrecer alternativas lúdicas que no generen costos adicionales y gestionar redes de apoyo interno."
+        "El estudiante requiere fortalecer la confianza en sus propias capacidades y su percepción de autoeficacia frente a los retos escolares.": "Establecer metas alcanzables y progresivas, brindando retroalimentación positiva y reconociendo sus avances y logros.",
+        "Se evidencia sensibilidad frente a diagnósticos o etiquetas previas que inciden en su motivación y participación.": "Promover un enfoque centrado en las fortalezas e intereses del estudiante, potenciando su participación en ambientes seguros.",
+        "El estudiante presenta desafíos para la integración social con sus pares, viéndose expuesto a dinámicas de aislamiento.": "Implementar actividades de aprendizaje cooperativo con roles definidos, mediación entre pares y talleres de empatía grupal.",
+        "El estudiante requiere desarrollar mayor autonomía e independencia frente al acompañamiento del adulto.": "Asignar responsabilidades graduales acordes con sus capacidades y retirar progresivamente los apoyos a medida que gana seguridad.",
+        "La forma de aprendizaje del estudiante requiere diversificar los canales de acceso más allá de las explicaciones convencionales.": "Aplicar principios DUA presentando la información por vías múltiples: visual, auditiva, kinestésica y experiencial.",
+        "El procesamiento de información del estudiante requiere que las instrucciones sean breves, concretas y segmentadas paso a paso.": "Brindar una instrucción a la vez, emplear lenguaje claro, dividir las tareas en pasos cortos y verificar la comprensión.",
+        "El estilo de aprendizaje del estudiante presenta dificultades frente a actividades de copia extensa, mecanización o memorización.": "Priorizar actividades prácticas, esquemas visuales, mapas conceptuales y experiencias conectadas con su cotidianidad.",
+        "Para la comprensión de conceptos abstractos, el estudiante requiere el apoyo constante de referentes visuales y material concreto.": "Incorporar sistemáticamente pictogramas, organizadores gráficos, modelado visual y objetos manipulables.",
+        "Se identifica un desfase entre el ritmo de aprendizaje actual del estudiante y los objetivos estandarizados del grado.": "Priorizar los aprendizajes básicos e imprescindibles del área, formulando indicadores graduales y ajustados a su progreso.",
+        "El ritmo de procesamiento y ejecución del estudiante requiere tiempos adicionales o flexibilizados en actividades y evaluaciones.": "Otorgar tiempo adicional, permitir entregas por etapas o dosificar la cantidad de ejercicios conservando el objetivo pedagógico.",
+        "El estudiante presenta barreras para demostrar sus aprendizajes únicamente a través de pruebas escritas tradicionales.": "Diversificar los instrumentos de evaluación permitiendo respuestas orales, gráficas, prácticas, audiovisuales o con apoyo concreto.",
+        "Por su proceso evolutivo, el estudiante requiere que se valore prioritariamente su avance gradual y esfuerzo formativo.": "Emplear rúbricas formativas que valoren el progreso individual, la participación, el esfuerzo y las estrategias empleadas.",
+        "El estudiante presenta desafíos para retener y comprender instrucciones brindadas exclusivamente por vía oral.": "Acompañar las indicaciones verbales con apoyos visuales en el tablero, gestos, ejemplos modelados o listas de chequeo.",
+        "El estudiante experimenta fatiga cognitiva o dificultad de comprensión ante textos extensos o con vocabulario complejo.": "Adaptar las lecturas mediante textos cortos, letra clara, resaltado de ideas principales y glosarios visuales previos.",
+        "El estudiante presenta alta sensibilidad sensorial ante el ruido, estímulos visuales o distractores del entorno.": "Ubicar estratégicamente al estudiante en zonas de menor carga sensorial y acordar pausas breves de regulación.",
+        "El estudiante presenta barreras en el acceso, familiarización o manejo autónomo de recursos digitales y tecnológicos.": "Brindar acompañamiento guiado paso a paso en el uso de herramientas digitales y ofrecer alternativas en formato físico.",
+        "El proceso del estudiante requiere fortalecer la articulación interdisciplinaria con redes de apoyo internas y externas.": "Mantener mesas de articulación periódica entre docentes, orientación escolar y apoyos terapéuticos externos.",
+        "Se presentan intermitencias en los canales de comunicación y seguimiento corresponsable entre la familia y el colegio.": "Establecer acuerdos formales de seguimiento con la familia, destacando avances y brindando pautas claras para el hogar.",
+        "Factores socioeconómicos o del contexto familiar limitan el acceso continuo a materiales, transporte o conectividad.": "Priorizar recursos didácticos disponibles en la institución que no generen costos adicionales y activar redes de apoyo escolar."
     };
 
     let areasSeleccionadas = [];
@@ -952,7 +1107,7 @@
     // GENERAR REPORTE
     function generarInformeIntegral() {
         if (!document.getElementById("unified-form").checkValidity()) {
-            alert("⚠️ Faltan campos requeridos. Asegúrese de llenar todos los datos de texto, el grado y calificar las listas de chequeo desplegadas antes de generar el informe."); return;
+            alert("⚠️ Faltan campos requeridos. Asegúrese de llenar todos los datos de identificación, el grado, relación con la norma y calificar las listas de chequeo desplegadas antes de generar el informe."); return;
         }
 
         const nombre = document.getElementById("cp_nombre").value;
@@ -971,19 +1126,26 @@
         document.getElementById("firma_docente_area").innerText = document.getElementById("cp_area_docente").value;
         document.getElementById("firma_orientadora_nombre").innerText = document.getElementById("cp_orientadora").value;
 
-        // Redacción Descriptiva
-        const impl = getCbValues("dua_impl").join(", ") || "metodologías estandarizadas";
-        const rep = getCbValues("dua_rep").join(" y ") || "los canales de enseñanza convencional";
-        const exp = getCbValues("dua_exp").join(", ") || "métodos de evaluación tradicionales";
-        const pares = getCbValues("soc_pares").join(" y ") || "manera intermitente";
-        const norma = getRadioValue("cp_norma") || "Se requiere mayor observación frente a las normas.";
-        const fam = getCbValues("soc_fam").join(", ") || "niveles que requieren fortalecimiento institucional";
+        // Redacción Descriptiva + Estrategias DUA seleccionadas
+        const impl = getCbValues("dua_impl").join(", ") || "metodologías estructuradas de aula";
+        const rep = getCbValues("dua_rep").join(" y ") || "canales de enseñanza convencionales";
+        const exp = getCbValues("dua_exp").join(", ") || "métodos de evaluación habituales";
+        const estAulaDua = getCbValues("dua_est_aula");
+        const pares = getCbValues("soc_pares").join(" y ") || "manera acorde al contexto";
+        const norma = getRadioValue("cp_norma") || "Se requiere observación continua frente a las normas.";
+        const fam = getCbValues("soc_fam").join(", ") || "niveles que requieren articulación continua";
+
+        let bloqueEstrategiasDua = "";
+        if (estAulaDua.length > 0) {
+            bloqueEstrategiasDua = `<br><br><strong>Estrategias DUA priorizadas para el aula:</strong><ul style="margin:5px 0 0 0; padding-left:20px;">` +
+                estAulaDua.map(e => `<li>${e}</li>`).join("") + `</ul>`;
+        }
 
         const conceptoHTML = `
             <strong>Perfil de Aprendizaje (Principios DUA):</strong><br>
-            A partir del análisis pedagógico, se establece que el/la estudiante <strong>${nombre}</strong> evidencia una mejor respuesta cognitiva y de adherencia a la tarea escolar cuando se involucran herramientas que despiertan su motivación; específicamente, en el aula se observa que <em>${impl}</em>. Al momento de procesar la información y adquirir nuevos conceptos, los canales de percepción más efectivos para su asimilación incluyen <em>${rep}</em>. En consecuencia, para verificar el grado de competencia adquirida, el estudiante demuestra un nivel superior de participación cuando sus medios de expresión permiten <em>${exp}</em>.<br><br>
+            A partir del análisis pedagógico, se establece que el/la estudiante <strong>${nombre}</strong> evidencia una mejor respuesta cognitiva y de adherencia a la tarea escolar cuando se involucran herramientas que despiertan su motivación; específicamente, en el aula se observa que presenta <em>${impl}</em>. Al momento de procesar la información y adquirir nuevos conceptos, los canales de percepción más efectivos para su asimilación incluyen <em>${rep}</em>. En consecuencia, para verificar el grado de competencia adquirida, el estudiante demuestra un mayor nivel de participación cuando sus medios de expresión permiten <em>${exp}</em>.${bloqueEstrategiasDua}<br><br>
             <strong>Desarrollo Socioemocional, Convivencia y Dinámica Vincular:</strong><br>
-            A nivel socioafectivo y en el marco de sus relaciones interpersonales dentro de la comunidad, se identifica que en su interacción con los pares <em>${pares}</em>. En cuanto a la autorregulación y el seguimiento de instrucciones, la observación docente indica lo siguiente: <strong>${norma}</strong> Complementario a esto, al evaluar la red de apoyo del estudiante, se evidencia que el acompañamiento y corresponsabilidad familiar se caracteriza por <em>${fam}</em>.
+            A nivel socioafectivo y en el marco de sus relaciones interpersonales dentro de la comunidad, se identifica que en su interacción con los pares <em>${pares}</em>. En cuanto a la autorregulación y el seguimiento de acuerdos, la observación indica lo siguiente: <strong>${norma}</strong> Complementario a esto, al valorar la red de apoyo del estudiante, se evidencia que el acompañamiento y corresponsabilidad familiar se caracteriza por <em>${fam}</em>.
         `;
         document.getElementById("out_concepto_redactado").innerHTML = conceptoHTML;
 
@@ -992,11 +1154,21 @@
         const bTable = document.getElementById("out_barreras_table");
         bTable.innerHTML = "";
         if(barrerasSel.length === 0) {
-            bTable.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#555;">No se identificaron barreras limitantes en el entorno al momento de la evaluación.</td></tr>`;
+            bTable.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#555;">No se identificaron barreras específicas en el proceso de aprendizaje ni en la interacción con el entorno al momento de la valoración.</td></tr>`;
         } else {
             barrerasSel.forEach(b => {
-                bTable.innerHTML += `<tr><td><strong>${b}</strong></td><td style="background-color: #f9f9f9;">${estrategiasBarreras[b] || "Aplicar principios de flexibilización transversal."}</td></tr>`;
+                bTable.innerHTML += `<tr><td><strong>${b}</strong></td><td style="background-color: #f9f9f9;">${estrategiasBarreras[b] || "Aplicar principios de flexibilización y Diseño Universal para el Aprendizaje (DUA)."}</td></tr>`;
             });
+        }
+
+        // Sugerencias en Barreras Institucionales
+        const sugBarreras = document.getElementById("cp_sugerencias_barreras").value.trim();
+        const sugBarrerasBox = document.getElementById("out_sugerencias_barreras_box");
+        if (sugBarreras !== "") {
+            document.getElementById("out_sugerencias_barreras_txt").innerText = sugBarreras;
+            sugBarrerasBox.classList.remove("hidden");
+        } else {
+            sugBarrerasBox.classList.add("hidden");
         }
 
         // Matriz de Áreas Académicas
@@ -1049,6 +1221,18 @@
                     }
                 }
             });
+        }
+
+        // Sugerencias adicionales para Aula y Hogar
+        const sugAula = document.getElementById("cp_sugerencias_aula").value.trim();
+        const sugHogar = document.getElementById("cp_sugerencias_hogar").value.trim();
+        const sugAjustesBox = document.getElementById("out_sugerencias_ajustes_box");
+        if (sugAula !== "" || sugHogar !== "") {
+            document.getElementById("out_sugerencias_aula_txt").innerText = sugAula || "Sin sugerencias adicionales registradas.";
+            document.getElementById("out_sugerencias_hogar_txt").innerText = sugHogar || "Sin sugerencias adicionales registradas.";
+            sugAjustesBox.classList.remove("hidden");
+        } else {
+            sugAjustesBox.classList.add("hidden");
         }
 
         // Criterio de Resolución Final
